@@ -68,7 +68,7 @@ export function CourseProgressOverview() {
               >
                 COURSE PROGRESSION
               </div>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--ds-text-primary)', margin: 0 }}>
                 {completedCount} / {totalCount} Modules Completed
               </h2>
             </div>
@@ -110,57 +110,57 @@ export function CourseProgressOverview() {
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '1.5rem',
               padding: '1.25rem 1.5rem',
-              background: 'rgba(255, 255, 255, 0.03)',
+              background: 'var(--ds-bg-surface-elevated)',
               border: '1px solid var(--ds-border-subtle)',
               borderRadius: '4px',
             }}
           >
             {/* Current Active Module */}
             <div>
-              <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', marginBottom: '6px' }}>
                 CURRENT FOCUS
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                 <PlayFilledAlt size={16} style={{ color: 'var(--ds-cyan)' }} />
-                <span style={{ fontWeight: 600, color: '#ffffff', fontSize: '1rem' }}>
+                <span style={{ fontWeight: 600, color: 'var(--ds-text-primary)', fontSize: '1rem' }}>
                   Module {activeModule?.moduleNumber} — {activeModule?.title}
                 </span>
               </div>
-              <div style={{ fontSize: '0.875rem', color: '#c6c6c6' }}>
+              <div style={{ fontSize: '0.875rem', color: 'var(--ds-text-secondary)' }}>
                 {activeModule?.subtitle}
               </div>
             </div>
 
             {/* Estimated Time */}
             <div>
-              <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', marginBottom: '6px' }}>
                 ESTIMATED EFFORT
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Time size={16} style={{ color: 'var(--ds-teal)' }} />
-                <span style={{ fontWeight: 500, color: '#ffffff' }}>
+                <span style={{ fontWeight: 500, color: 'var(--ds-text-primary)' }}>
                   {activeModule?.estimatedHours} for current module
                 </span>
               </div>
-              <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--ds-text-muted)', marginTop: '4px' }}>
                 Includes interactive Python labs & visual diagnostics
               </div>
             </div>
 
             {/* Next Milestone */}
             <div>
-              <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', marginBottom: '6px' }}>
                 NEXT UNLOCK
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Locked size={16} style={{ color: '#8d8d8d' }} />
-                <span style={{ fontWeight: 500, color: '#c6c6c6' }}>
+                <Locked size={16} style={{ color: 'var(--ds-text-muted)' }} />
+                <span style={{ fontWeight: 500, color: 'var(--ds-text-secondary)' }}>
                   {completedCount < totalCount - 1
                     ? `Module ${completedCount + 2}: ${modules[completedCount + 1]?.title}`
                     : 'Course Completed!'}
                 </span>
               </div>
-              <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--ds-text-muted)', marginTop: '4px' }}>
                 Unlocks automatically upon completing Module {completedCount + 1}
               </div>
             </div>

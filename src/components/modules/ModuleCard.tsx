@@ -137,7 +137,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
           style={{
             fontSize: '1.375rem',
             fontWeight: 600,
-            color: isLocked ? '#c6c6c6' : '#ffffff',
+            color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-text-primary)',
             margin: '0 0 0.35rem 0',
             lineHeight: 1.25,
           }}
@@ -148,7 +148,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
         <div
           style={{
             fontSize: '0.875rem',
-            color: isLocked ? '#6f6f6f' : 'var(--ds-cyan)',
+            color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-cyan)',
             fontWeight: 500,
             marginBottom: '0.875rem',
           }}
@@ -161,7 +161,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
           style={{
             fontSize: '0.9375rem',
             lineHeight: 1.55,
-            color: isLocked ? '#8d8d8d' : '#c6c6c6',
+            color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-text-secondary)',
             margin: '0 0 1.25rem 0',
             flexGrow: 1,
           }}
@@ -173,15 +173,16 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
         <div
           style={{
             padding: '0.75rem 1rem',
-            background: isLocked ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 210, 255, 0.04)',
-            borderLeft: `3px solid ${isLocked ? '#525252' : 'var(--ds-cyan)'}`,
+            background: isLocked ? 'var(--ds-bg-surface-elevated)' : 'var(--ds-cyan-dim)',
+            borderLeft: `3px solid ${isLocked ? 'var(--ds-border-strong)' : 'var(--ds-cyan)'}`,
             marginBottom: '1.25rem',
             fontSize: '0.8125rem',
-            color: isLocked ? '#8d8d8d' : '#d0e2ff',
+            color: 'var(--ds-text-secondary)',
             lineHeight: 1.45,
+            borderRadius: '0 3px 3px 0',
           }}
         >
-          <strong style={{ color: isLocked ? '#a8a8a8' : '#ffffff' }}>Outcome:</strong> {module.keyOutcome}
+          <strong style={{ color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-text-primary)' }}>Outcome:</strong> {module.keyOutcome}
         </div>
 
         {/* Stats Row */}
@@ -194,7 +195,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
             borderTop: '1px solid var(--ds-border-subtle)',
             marginBottom: '1rem',
             fontSize: '0.8125rem',
-            color: '#8d8d8d',
+            color: 'var(--ds-text-muted)',
           }}
         >
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -239,10 +240,10 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
               alignItems: 'center',
               justifyContent: 'space-between',
               padding: '8px 12px',
-              background: 'rgba(255, 255, 255, 0.03)',
+              background: 'var(--ds-bg-surface-elevated)',
               border: '1px solid var(--ds-border-subtle)',
               borderRadius: '3px',
-              color: '#c6c6c6',
+              color: 'var(--ds-text-secondary)',
               fontSize: '0.8125rem',
               cursor: 'pointer',
               transition: 'background 0.2s ease',

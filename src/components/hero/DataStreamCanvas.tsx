@@ -8,10 +8,8 @@ interface Point {
   vx: number;
   vy: number;
   radius: number;
-  baseX: number;
-  baseY: number;
   pulsePhase: number;
-  color: string;
+  colorIdx: number;
 }
 
 export function DataStreamCanvas() {
@@ -36,9 +34,10 @@ export function DataStreamCanvas() {
 
     window.addEventListener('resize', handleResize);
 
-    const colors = ['#00d2ff', '#0f62fe', '#8a3ffc', '#009d9a'];
+    const isLightMode = () => document.documentElement.classList.contains('cds--white');
+
     let points: Point[] = [];
-    const pointCount = Math.min(45, Math.floor((width * height) / 18000));
+    const pointCount = Math.min(36, Math.max(18, Math.floor((width * height) / 24000)));
 
     function initPoints() {
       points = [];
@@ -48,13 +47,11 @@ export function DataStreamCanvas() {
         points.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
-          radius: Math.random() * 2.2 + 1.2,
-          baseX: x,
-          baseY: y,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 1.8 + 1.0,
           pulsePhase: Math.random() * Math.PI * 2,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          colorIdx: Math.floor(Math.random() * 4),
         });
       }
     }
@@ -79,39 +76,37 @@ export function DataStreamCanvas() {
     let tick = 0;
 
     const render = () => {
-      tick += 0.02;
+      tick += 0.015;
       ctx.clearRect(0, 0, width, height);
 
-      // Draw subtle background grid coordinates
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
-      const gridSize = 48;
-      for (let x = 0; x < width; x += gridSize) {
-        for (let y = 0; y < height; y += gridSize) {
-          ctx.fillRect(x - 0.5, y - 0.5, 1, 1);
-        }
-      }
+      const light = isLightMode();
 
-      // Update and draw connections
-      const maxDist = 130;
+      // Theme-based palette
+      const darkColors = ['#33b1ff', '#0f62fe', '#a56eff', '#00b4a4'];
+      const lightColors = ['#00629b', '#0f62fe', '#6929c4', '#007d79'];
+      const activePalette = light ? lightColors : darkColors;
+
+      const maxDist = 140;
+
       for (let i = 0; i < points.length; i++) {
         const p1 = points[i];
 
-        // Move
+        // Position update
         p1.x += p1.vx;
         p1.y += p1.vy;
 
-        // Bounce at boundaries
+        // Boundaries
         if (p1.x < 0 || p1.x > width) p1.vx *= -1;
         if (p1.y < 0 || p1.y > height) p1.vy *= -1;
 
-        // Mouse interaction
+        // Subtle mouse repulsion
         const dxMouse = mouse.x - p1.x;
         const dyMouse = mouse.y - p1.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        if (distMouse < 140) {
-          const force = (140 - distMouse) / 140;
-          p1.x -= (dxMouse / distMouse) * force * 1.5;
-          p1.y -= (dyMouse / distMouse) * force * 1.5;
+        if (distMouse < 120) {
+          const force = (120 - distMouse) / 120;
+          p1.x -= (dxMouse / distMouse) * force * 1.2;
+          p1.y -= (dyMouse / distMouse) * force * 1.2;
         }
 
         // Draw connections
@@ -122,35 +117,40 @@ export function DataStreamCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDist) {
-            const alpha = (1 - dist / maxDist) * 0.28;
-            ctx.strokeStyle = `rgba(0, 210, 255, ${alpha})`;
-            ctx.lineWidth = 1;
+            const factor = 1 - dist / maxDist;
+            const lineAlpha = light ? factor * 0.12 : factor * 0.18;
+            ctx.strokeStyle = light
+              ? `rgba(15, 98, 254, ${lineAlpha})`
+              : `rgba(51, 177, 255, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
 
-            // Animated pulse packets traveling along lines
-            const packetPos = (Math.sin(tick * 1.5 + i + j) + 1) / 2;
+            // Subtle animated data pulse
+            const packetPos = (Math.sin(tick * 1.2 + i + j) + 1) / 2;
             const px = p1.x + (p2.x - p1.x) * packetPos;
             const py = p1.y + (p2.y - p1.y) * packetPos;
 
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 1.8})`;
+            ctx.fillStyle = light
+              ? `rgba(15, 98, 254, ${lineAlpha * 1.5})`
+              : `rgba(255, 255, 255, ${lineAlpha * 1.5})`;
             ctx.beginPath();
-            ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+            ctx.arc(px, py, 1.0, 0, Math.PI * 2);
             ctx.fill();
           }
         }
 
-        // Draw Node
-        const pulse = Math.sin(tick * 2 + p1.pulsePhase) * 0.5 + 1;
-        ctx.fillStyle = p1.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = p1.color;
+        // Draw node
+        const nodePulse = Math.sin(tick * 1.8 + p1.pulsePhase) * 0.3 + 1;
+        const color = activePalette[p1.colorIdx];
+        ctx.fillStyle = color;
+        ctx.globalAlpha = light ? 0.35 : 0.65;
         ctx.beginPath();
-        ctx.arc(p1.x, p1.y, p1.radius * pulse, 0, Math.PI * 2);
+        ctx.arc(p1.x, p1.y, p1.radius * nodePulse, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.globalAlpha = 1.0;
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -178,7 +178,7 @@ export function DataStreamCanvas() {
         height: '100%',
         pointerEvents: 'none',
         zIndex: 0,
-        opacity: 0.85,
+        opacity: 0.8,
       }}
     />
   );

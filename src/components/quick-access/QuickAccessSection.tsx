@@ -43,14 +43,14 @@ export function QuickAccessSection() {
             style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
               fontWeight: 600,
-              color: '#ffffff',
+              color: 'var(--ds-text-primary)',
               margin: '0 0 1rem 0',
               lineHeight: 1.2,
             }}
           >
             Practice & Mastery Suite
           </h2>
-          <p style={{ fontSize: '1.0625rem', color: '#a8a8a8', lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: '1.0625rem', color: 'var(--ds-text-secondary)', lineHeight: 1.6, margin: 0 }}>
             Companion tools designed to reinforce engineering intuition, interview readiness, and hands-on coding mastery.
           </p>
         </div>
@@ -87,8 +87,8 @@ export function QuickAccessSection() {
               >
                 <div
                   style={{
-                    color: item.id === 'ask-di' ? 'var(--ds-cyan)' : '#8d8d8d',
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    color: item.id === 'ask-di' ? 'var(--ds-cyan)' : 'var(--ds-text-muted)',
+                    background: 'var(--ds-bg-surface-elevated)',
                     padding: '10px',
                     borderRadius: '4px',
                     border: '1px solid var(--ds-border-subtle)',
@@ -112,7 +112,7 @@ export function QuickAccessSection() {
                 style={{
                   fontSize: '0.75rem',
                   fontFamily: 'var(--ds-font-mono)',
-                  color: '#8d8d8d',
+                  color: 'var(--ds-text-muted)',
                   textTransform: 'uppercase',
                   marginBottom: '4px',
                 }}
@@ -124,7 +124,7 @@ export function QuickAccessSection() {
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: 600,
-                  color: '#ffffff',
+                  color: 'var(--ds-text-primary)',
                   margin: '0 0 0.75rem 0',
                 }}
               >
@@ -135,7 +135,7 @@ export function QuickAccessSection() {
               <p
                 style={{
                   fontSize: '0.875rem',
-                  color: '#a8a8a8',
+                  color: 'var(--ds-text-secondary)',
                   lineHeight: 1.5,
                   margin: '0 0 1.5rem 0',
                   flexGrow: 1,
@@ -153,7 +153,7 @@ export function QuickAccessSection() {
                 style={{
                   width: '100%',
                   borderColor: 'var(--ds-border-subtle)',
-                  color: '#c6c6c6',
+                  color: 'var(--ds-text-primary)',
                   fontSize: '0.875rem',
                 }}
               >
@@ -173,7 +173,7 @@ export function QuickAccessSection() {
         onRequestSubmit={() => setSelectedItem(null)}
         size="sm"
       >
-        <div style={{ padding: '1rem 0', color: '#c6c6c6' }}>
+        <div style={{ padding: '1rem 0', color: 'var(--ds-text-secondary)' }}>
           <div style={{ marginBottom: '1rem' }}>
             <Tag type={selectedItem?.id === 'ask-di' ? 'cyan' : 'purple'} size="md">
               {selectedItem?.category} • {selectedItem?.badge}

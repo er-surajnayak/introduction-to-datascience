@@ -48,7 +48,7 @@ export function ModuleGrid() {
               style={{
                 fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
                 fontWeight: 600,
-                color: '#ffffff',
+                color: 'var(--ds-text-primary)',
                 margin: '0 0 0.5rem 0',
                 lineHeight: 1.2,
               }}
@@ -58,7 +58,7 @@ export function ModuleGrid() {
             <p
               style={{
                 fontSize: '1rem',
-                color: '#a8a8a8',
+                color: 'var(--ds-text-secondary)',
                 maxWidth: '650px',
                 margin: 0,
                 lineHeight: 1.5,

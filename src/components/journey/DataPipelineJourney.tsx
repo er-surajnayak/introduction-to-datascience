@@ -49,7 +49,7 @@ export function DataPipelineJourney() {
             style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
               fontWeight: 600,
-              color: '#ffffff',
+              color: 'var(--ds-text-primary)',
               margin: '0 0 1rem 0',
               lineHeight: 1.2,
             }}
@@ -60,7 +60,7 @@ export function DataPipelineJourney() {
             style={{
               fontSize: '1.0625rem',
               lineHeight: 1.6,
-              color: '#a8a8a8',
+              color: 'var(--ds-text-secondary)',
               margin: 0,
             }}
           >
@@ -138,7 +138,7 @@ export function DataPipelineJourney() {
                   style={{
                     fontSize: '1.25rem',
                     fontWeight: 600,
-                    color: '#ffffff',
+                    color: 'var(--ds-text-primary)',
                     margin: '0 0 0.25rem 0',
                   }}
                 >
@@ -159,7 +159,7 @@ export function DataPipelineJourney() {
                 <p
                   style={{
                     fontSize: '0.875rem',
-                    color: '#c6c6c6',
+                    color: 'var(--ds-text-secondary)',
                     lineHeight: 1.5,
                     marginBottom: '1.25rem',
                     flexGrow: 1,

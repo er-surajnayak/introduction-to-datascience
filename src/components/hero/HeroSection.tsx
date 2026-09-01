@@ -19,11 +19,11 @@ export function HeroSection() {
     <section
       style={{
         position: 'relative',
-        minHeight: '84vh',
+        minHeight: '82vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '6rem',
+        paddingTop: '5rem',
         paddingBottom: '4rem',
         overflow: 'hidden',
         borderBottom: '1px solid var(--ds-border-subtle)',
@@ -33,16 +33,16 @@ export function HeroSection() {
       {/* Background Data Stream Canvas */}
       <DataStreamCanvas />
 
-      {/* Radial Gradient Glows */}
+      {/* Radial Gradient Glow */}
       <div
         style={{
           position: 'absolute',
-          top: '20%',
+          top: '30%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '700px',
-          height: '400px',
-          background: 'radial-gradient(ellipse at center, rgba(0, 210, 255, 0.12) 0%, rgba(15, 98, 254, 0.06) 45%, transparent 70%)',
+          width: '650px',
+          height: '380px',
+          background: 'var(--ds-hero-radial)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -50,48 +50,64 @@ export function HeroSection() {
 
       <div className="ds-container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          style={{ maxWidth: '940px', margin: '0 auto' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          style={{ maxWidth: '900px', margin: '0 auto' }}
         >
-          {/* Top Carbon Tags */}
+          {/* Top Academic Badge */}
           <div
             style={{
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
-              justifyContent: 'center',
               gap: '8px',
-              flexWrap: 'wrap',
-              marginBottom: '1.5rem',
+              padding: '4px 14px',
+              background: 'var(--ds-bg-surface)',
+              border: '1px solid var(--ds-border-subtle)',
+              borderRadius: '999px',
+              marginBottom: '1.75rem',
+              fontSize: '0.8125rem',
+              color: 'var(--ds-text-secondary)',
+              boxShadow: 'var(--ds-card-shadow)',
             }}
           >
-            <Tag type="cyan" size="md">
-              <span style={{ fontWeight: 600 }}>DS-201</span> • 2nd Year Engineering
-            </Tag>
-            <Tag type="purple" size="md">
+            <span
+              style={{
+                fontFamily: 'var(--ds-font-mono)',
+                fontWeight: 600,
+                color: 'var(--ds-cyan)',
+                background: 'var(--ds-cyan-dim)',
+                padding: '2px 8px',
+                borderRadius: '999px',
+                fontSize: '0.75rem',
+              }}
+            >
+              DS-201
+            </span>
+            <span style={{ fontWeight: 500, color: 'var(--ds-text-primary)' }}>
+              2nd Year Engineering
+            </span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>•</span>
+            <span style={{ color: 'var(--ds-text-secondary)' }}>
               Interactive Digital Notes
-            </Tag>
-            <Tag type="teal" size="md">
-              IBM Carbon Standard
-            </Tag>
+            </span>
           </div>
 
           {/* Primary Heading */}
           <h1
             style={{
-              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+              fontSize: 'clamp(2.5rem, 5.5vw, 4.25rem)',
               fontWeight: 700,
-              lineHeight: 1.1,
-              letterSpacing: '-0.03em',
+              lineHeight: 1.12,
+              letterSpacing: '-0.025em',
               margin: '0 0 1.25rem 0',
-              color: '#ffffff',
+              color: 'var(--ds-text-primary)',
             }}
           >
             Introduction to <br />
             <span
               style={{
-                background: 'linear-gradient(135deg, #00d2ff 0%, #0f62fe 50%, #8a3ffc 100%)',
+                background: 'var(--ds-hero-gradient)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -100,45 +116,46 @@ export function HeroSection() {
             </span>
           </h1>
 
-          {/* Method Paradigm */}
+          {/* Methodology Progression Strip */}
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '12px',
-              padding: '6px 18px',
-              background: 'rgba(255, 255, 255, 0.04)',
+              gap: '10px',
+              padding: '6px 16px',
+              background: 'var(--ds-bg-surface)',
               border: '1px solid var(--ds-border-subtle)',
-              borderRadius: '999px',
+              borderRadius: '4px',
               marginBottom: '1.5rem',
               fontFamily: 'var(--ds-font-mono)',
-              fontSize: '0.875rem',
-              color: 'var(--ds-cyan)',
+              fontSize: '0.8125rem',
+              color: 'var(--ds-text-secondary)',
               flexWrap: 'wrap',
             }}
           >
-            <span>Explore</span>
-            <span style={{ color: '#525252' }}>→</span>
-            <span>Experiment</span>
-            <span style={{ color: '#525252' }}>→</span>
-            <span>Analyze</span>
-            <span style={{ color: '#525252' }}>→</span>
-            <span style={{ color: '#8a3ffc' }}>Build</span>
+            <span style={{ color: 'var(--ds-cyan)', fontWeight: 600 }}>Explore</span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>→</span>
+            <span style={{ color: 'var(--ds-teal)', fontWeight: 600 }}>Experiment</span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>→</span>
+            <span style={{ color: 'var(--ds-purple)', fontWeight: 600 }}>Analyze</span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>→</span>
+            <span style={{ color: 'var(--ds-blue)', fontWeight: 600 }}>Model</span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>→</span>
+            <span style={{ color: 'var(--ds-emerald)', fontWeight: 600 }}>Decide</span>
           </div>
 
-          {/* Core Philosophy Message */}
+          {/* Philosophy Subtitle */}
           <p
             style={{
-              fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(1rem, 1.8vw, 1.1875rem)',
               lineHeight: 1.6,
-              color: '#c6c6c6',
-              maxWidth: '780px',
-              margin: '0 auto 2.5rem auto',
-              fontWeight: 300,
+              color: 'var(--ds-text-secondary)',
+              maxWidth: '720px',
+              margin: '0 auto 2.25rem auto',
             }}
           >
-            A hands-on computational laboratory. Transform raw telemetry and unstructured numbers into clean datasets, statistical distributions, time trends, and predictive linear models.
+            A hands-on computational laboratory. Transform raw telemetry into clean datasets, statistical distributions, time trends, and predictive models.
           </p>
 
           {/* CTA Buttons */}
@@ -159,7 +176,7 @@ export function HeroSection() {
                 kind="primary"
                 style={{
                   backgroundColor: '#0f62fe',
-                  minWidth: '220px',
+                  minWidth: '200px',
                 }}
               >
                 Start Module 1
@@ -173,7 +190,7 @@ export function HeroSection() {
                 kind="tertiary"
                 style={{
                   borderColor: 'var(--ds-border-strong)',
-                  color: '#f4f4f4',
+                  color: 'var(--ds-text-primary)',
                   minWidth: '180px',
                 }}
               >
@@ -182,7 +199,7 @@ export function HeroSection() {
             </a>
           </div>
 
-          {/* Value Highlight Badges */}
+          {/* 4 Feature Highlights Grid */}
           <div
             style={{
               display: 'grid',
@@ -194,7 +211,7 @@ export function HeroSection() {
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1rem 1.25rem',
+                padding: '1.125rem 1.25rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
@@ -203,10 +220,10 @@ export function HeroSection() {
             >
               <DataStructured size={24} style={{ color: 'var(--ds-cyan)', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
                   Curriculum
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: '#f4f4f4' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
                   5 Core Modules
                 </div>
               </div>
@@ -215,7 +232,7 @@ export function HeroSection() {
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1rem 1.25rem',
+                padding: '1.125rem 1.25rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
@@ -224,10 +241,10 @@ export function HeroSection() {
             >
               <Code size={24} style={{ color: 'var(--ds-teal)', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
                   Hands-On
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: '#f4f4f4' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
                   Python & NumPy
                 </div>
               </div>
@@ -236,7 +253,7 @@ export function HeroSection() {
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1rem 1.25rem',
+                padding: '1.125rem 1.25rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
@@ -245,10 +262,10 @@ export function HeroSection() {
             >
               <Analytics size={24} style={{ color: 'var(--ds-purple)', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
                   Progression
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: '#f4f4f4' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
                   Data-Driven Unlocking
                 </div>
               </div>
@@ -257,7 +274,7 @@ export function HeroSection() {
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1rem 1.25rem',
+                padding: '1.125rem 1.25rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
@@ -266,10 +283,10 @@ export function HeroSection() {
             >
               <Chemistry size={24} style={{ color: 'var(--ds-amber)', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '0.8125rem', color: '#8d8d8d', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
                   Experience
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: '#f4f4f4' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
                   Zero Fluff Laboratory
                 </div>
               </div>

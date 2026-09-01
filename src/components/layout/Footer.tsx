@@ -9,10 +9,10 @@ export function Footer() {
   return (
     <footer
       style={{
-        background: '#0a0c10',
+        background: 'var(--ds-bg-core)',
         borderTop: '1px solid var(--ds-border-subtle)',
         padding: '4rem 0 2rem 0',
-        color: '#8d8d8d',
+        color: 'var(--ds-text-muted)',
         fontSize: '0.875rem',
       }}
     >
@@ -28,14 +28,14 @@ export function Footer() {
           {/* Brand & Purpose */}
           <div style={{ maxWidth: '340px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-              <span style={{ fontWeight: 700, fontSize: '1.125rem', color: '#ffffff', letterSpacing: '-0.02em' }}>
+              <span style={{ fontWeight: 700, fontSize: '1.125rem', color: 'var(--ds-text-primary)', letterSpacing: '-0.02em' }}>
                 DI NOTES
               </span>
               <span style={{ color: 'var(--ds-cyan)', fontWeight: 600, fontSize: '1rem' }}>
                 DATA SCIENCE
               </span>
             </div>
-            <p style={{ lineHeight: 1.6, color: '#a8a8a8', fontSize: '0.875rem', margin: '0 0 1.25rem 0' }}>
+            <p style={{ lineHeight: 1.6, color: 'var(--ds-text-secondary)', fontSize: '0.875rem', margin: '0 0 1.25rem 0' }}>
               A high-craft interactive learning laboratory built for 2nd-year engineering students. Bridging mathematical models and real-world Python code.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -46,10 +46,10 @@ export function Footer() {
                     fontFamily: 'var(--ds-font-mono)',
                     fontSize: '0.6875rem',
                     padding: '2px 6px',
-                    background: 'rgba(255, 255, 255, 0.05)',
+                    background: 'var(--ds-bg-surface-elevated)',
                     border: '1px solid var(--ds-border-subtle)',
                     borderRadius: '2px',
-                    color: '#c6c6c6',
+                    color: 'var(--ds-text-secondary)',
                   }}
                 >
                   {tool}
@@ -78,7 +78,7 @@ export function Footer() {
                   <Link
                     href={`/modules/${m.id}`}
                     style={{
-                      color: m.status === 'locked' ? '#6f6f6f' : '#c6c6c6',
+                      color: m.status === 'locked' ? 'var(--ds-text-muted)' : 'var(--ds-text-secondary)',
                       textDecoration: 'none',
                       transition: 'color 0.2s ease',
                       display: 'inline-flex',
@@ -110,22 +110,22 @@ export function Footer() {
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               <li>
-                <a href="#quick-access" style={{ color: '#c6c6c6' }}>
+                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
                   Question Bank <Tag size="sm" type="cool-gray">Soon</Tag>
                 </a>
               </li>
               <li>
-                <a href="#quick-access" style={{ color: '#c6c6c6' }}>
+                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
                   Quiz Arena <Tag size="sm" type="cool-gray">Soon</Tag>
                 </a>
               </li>
               <li>
-                <a href="#quick-access" style={{ color: '#c6c6c6' }}>
+                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
                   Ask DI Assistant <Tag size="sm" type="cyan">Preview</Tag>
                 </a>
               </li>
               <li>
-                <a href="#quick-access" style={{ color: '#c6c6c6' }}>
+                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
                   Real-World Tasks <Tag size="sm" type="cool-gray">Soon</Tag>
                 </a>
               </li>
@@ -146,10 +146,10 @@ export function Footer() {
             >
               Standard & Quality
             </div>
-            <p style={{ color: '#a8a8a8', lineHeight: 1.5, margin: '0 0 1rem 0', fontSize: '0.8125rem' }}>
+            <p style={{ color: 'var(--ds-text-secondary)', lineHeight: 1.5, margin: '0 0 1rem 0', fontSize: '0.8125rem' }}>
               Built strictly in accordance with IBM Carbon Design System v11, Framer Motion, and Next.js App Router.
             </p>
-            <div style={{ color: '#6f6f6f', fontSize: '0.75rem', fontFamily: 'var(--ds-font-mono)' }}>
+            <div style={{ color: 'var(--ds-text-muted)', fontSize: '0.75rem', fontFamily: 'var(--ds-font-mono)' }}>
               Engineered with Google Antigravity & Gemini 3.7
             </div>
           </div>
@@ -166,7 +166,7 @@ export function Footer() {
             flexWrap: 'wrap',
             gap: '1rem',
             fontSize: '0.75rem',
-            color: '#6f6f6f',
+            color: 'var(--ds-text-muted)',
           }}
         >
           <div>

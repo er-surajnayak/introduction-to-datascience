@@ -6,73 +6,112 @@
 // Global custom tokens mapped to Carbon role tokens with DS laboratory accents
 :root {
   // Use official Carbon CSS Custom Properties with safe fallbacks
-  --ds-bg-core: var(--cds-background, #0f1117);
-  --ds-bg-surface: var(--cds-layer-01, #161a22);
-  --ds-bg-surface-elevated: var(--cds-layer-02, #1f2430);
-  --ds-bg-card-hover: var(--cds-layer-hover-01, #262c3b);
+  --ds-bg-core: var(--cds-background, #161616);
+  --ds-bg-surface: var(--cds-layer-01, #262626);
+  --ds-bg-surface-elevated: var(--cds-layer-02, #393939);
+  --ds-bg-card-hover: var(--cds-layer-hover-01, #333333);
   --ds-border-subtle: var(--cds-border-subtle-01, rgba(255, 255, 255, 0.12));
-  --ds-border-strong: var(--cds-border-strong-01, rgba(255, 255, 255, 0.24));
+  --ds-border-strong: var(--cds-border-strong-01, rgba(255, 255, 255, 0.22));
   --ds-text-primary: var(--cds-text-primary, #f4f4f4);
   --ds-text-secondary: var(--cds-text-secondary, #c6c6c6);
   --ds-text-muted: var(--cds-text-helper, #8d8d8d);
+  --ds-grid-line: rgba(255, 255, 255, 0.04);
   
-  // Data Science Accents (Role-harmonized)
-  --ds-cyan: #0072c3;
-  --ds-cyan-dim: rgba(0, 114, 195, 0.12);
+  // Data Science Accents
+  --ds-cyan: #33b1ff;
+  --ds-cyan-dim: rgba(51, 177, 255, 0.14);
   --ds-blue: #0f62fe;
-  --ds-purple: #8a3ffc;
-  --ds-purple-dim: rgba(138, 63, 252, 0.12);
-  --ds-teal: #009d9a;
-  --ds-teal-dim: rgba(0, 157, 154, 0.12);
-  --ds-emerald: #198038;
-  --ds-emerald-dim: rgba(25, 128, 56, 0.12);
-  --ds-amber: #b28600;
+  --ds-purple: #a56eff;
+  --ds-purple-dim: rgba(165, 110, 255, 0.14);
+  --ds-teal: #00b4a4;
+  --ds-teal-dim: rgba(0, 180, 164, 0.14);
+  --ds-emerald: #24a148;
+  --ds-emerald-dim: rgba(36, 161, 72, 0.14);
+  --ds-amber: #f1c21b;
+  --ds-amber-dim: rgba(241, 194, 27, 0.14);
   
   // Typography
   --ds-font-mono: 'IBM Plex Mono', monospace, ui-monospace;
   --ds-font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
+  // Hero gradient
+  --ds-hero-gradient: linear-gradient(135deg, #33b1ff 0%, #0f62fe 50%, #a56eff 100%);
+  --ds-hero-radial: radial-gradient(ellipse at center, rgba(51, 177, 255, 0.12) 0%, rgba(15, 98, 254, 0.04) 50%, transparent 70%);
+
   // Elevation / Shadow
-  --ds-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --ds-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
-// Dark Mode Overrides for High-Contrast Lab Glows
+// Dark Mode Carbon Gray 100 theme
 html.cds--g100 {
-  --ds-cyan: #00d2ff;
-  --ds-cyan-dim: rgba(0, 210, 255, 0.14);
-  --ds-amber: #f1c21b;
-  --ds-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --ds-bg-core: #161616;
+  --ds-bg-surface: #262626;
+  --ds-bg-surface-elevated: #393939;
+  --ds-bg-card-hover: #333333;
+  --ds-border-subtle: #393939;
+  --ds-border-strong: #525252;
+  --ds-text-primary: #f4f4f4;
+  --ds-text-secondary: #c6c6c6;
+  --ds-text-muted: #8d8d8d;
+  --ds-grid-line: rgba(255, 255, 255, 0.04);
+  --ds-cyan: #33b1ff;
+  --ds-cyan-dim: rgba(51, 177, 255, 0.14);
+  --ds-hero-gradient: linear-gradient(135deg, #33b1ff 0%, #0f62fe 50%, #a56eff 100%);
+  --ds-hero-radial: radial-gradient(ellipse at center, rgba(51, 177, 255, 0.12) 0%, rgba(15, 98, 254, 0.05) 50%, transparent 70%);
+  --ds-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
+// Light Mode Carbon White theme
 html.cds--white {
+  --ds-bg-core: #ffffff;
+  --ds-bg-surface: #f4f4f4;
+  --ds-bg-surface-elevated: #ffffff;
+  --ds-bg-card-hover: #e8e8e8;
+  --ds-border-subtle: #e0e0e0;
+  --ds-border-strong: #c6c6c6;
+  --ds-text-primary: #161616;
+  --ds-text-secondary: #525252;
+  --ds-text-muted: #6f6f6f;
+  --ds-grid-line: rgba(0, 0, 0, 0.04);
   --ds-cyan: #00629b;
   --ds-cyan-dim: rgba(0, 98, 155, 0.08);
-  --ds-border-subtle: rgba(0, 0, 0, 0.08);
-  --ds-border-strong: rgba(0, 0, 0, 0.18);
+  --ds-purple: #6929c4;
+  --ds-purple-dim: rgba(105, 41, 196, 0.08);
+  --ds-teal: #007d79;
+  --ds-teal-dim: rgba(0, 125, 121, 0.08);
+  --ds-emerald: #198038;
+  --ds-emerald-dim: rgba(25, 128, 56, 0.08);
+  --ds-amber: #b28600;
+  --ds-amber-dim: rgba(178, 134, 0, 0.08);
+  --ds-hero-gradient: linear-gradient(135deg, #00629b 0%, #0f62fe 50%, #6929c4 100%);
+  --ds-hero-radial: radial-gradient(ellipse at center, rgba(15, 98, 254, 0.08) 0%, rgba(0, 98, 155, 0.03) 50%, transparent 70%);
   --ds-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 // Background Grid Pattern that adapts to Light and Dark Carbon themes
 .ds-grid-pattern {
-  background-size: 32px 32px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, var(--ds-border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--ds-border-subtle) 1px, transparent 1px);
+    linear-gradient(to right, var(--ds-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ds-grid-line) 1px, transparent 1px);
 }
 
 // Glassmorphic Tile Layer
 .ds-glass-panel {
   background: var(--ds-bg-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--ds-border-subtle);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ds-glass-panel:hover {
+  border-color: var(--ds-border-strong);
 }
 
 // Code & Formula Highlighting
 .ds-code-badge {
   font-family: var(--ds-font-mono);
   font-size: 0.8125rem;
-  background: var(--cds-layer-02, rgba(0, 0, 0, 0.06));
+  background: var(--ds-bg-surface-elevated);
   border: 1px solid var(--ds-border-subtle);
   color: var(--ds-cyan);
   padding: 2px 6px;

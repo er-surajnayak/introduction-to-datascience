@@ -136,7 +136,7 @@ export function Navbar() {
             title={`Course Progress: ${completedCount} of ${totalCount} Modules completed`}
           >
             <DataRefinery size={16} style={{ color: 'var(--ds-cyan)' }} />
-            <span style={{ fontFamily: 'var(--ds-font-mono)', fontSize: '0.75rem', color: '#c6c6c6' }}>
+            <span style={{ fontFamily: 'var(--ds-font-mono)', fontSize: '0.75rem', color: 'var(--ds-text-secondary)' }}>
               {completedCount}/{totalCount} DONE
             </span>
             <div style={{ width: '60px' }}>
@@ -236,7 +236,7 @@ export function Navbar() {
         size="sm"
         passiveModal={false}
       >
-        <p style={{ marginTop: '1rem', color: '#c6c6c6', lineHeight: 1.6 }}>
+        <p style={{ marginTop: '1rem', color: 'var(--ds-text-secondary)', lineHeight: 1.6 }}>
           {comingSoonModal.desc}
         </p>
       </Modal>

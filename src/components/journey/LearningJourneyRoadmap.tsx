@@ -65,14 +65,14 @@ export function LearningJourneyRoadmap() {
             style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
               fontWeight: 600,
-              color: '#ffffff',
+              color: 'var(--ds-text-primary)',
               margin: '0 0 1rem 0',
               lineHeight: 1.2,
             }}
           >
             Your Learning Journey
           </h2>
-          <p style={{ fontSize: '1.0625rem', color: '#a8a8a8', lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: '1.0625rem', color: 'var(--ds-text-secondary)', lineHeight: 1.6, margin: 0 }}>
             Every module builds directly upon the mathematical intuition and code developed in the previous step.
           </p>
         </div>
@@ -101,22 +101,22 @@ export function LearningJourneyRoadmap() {
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 style={{
                   background: isAvailable
-                    ? 'rgba(0, 210, 255, 0.05)'
+                    ? 'var(--ds-cyan-dim)'
                     : isCompleted
-                    ? 'rgba(36, 161, 72, 0.06)'
-                    : 'rgba(255, 255, 255, 0.02)',
+                    ? 'var(--ds-emerald-dim)'
+                    : 'var(--ds-bg-surface)',
                   border: isAvailable
                     ? '1.5px solid var(--ds-cyan)'
                     : isCompleted
-                    ? '1px solid #24a148'
+                    ? '1px solid var(--ds-emerald)'
                     : '1px solid var(--ds-border-subtle)',
                   borderRadius: '4px',
                   padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  opacity: isLocked ? 0.6 : 1,
-                  boxShadow: isAvailable ? '0 0 20px rgba(0, 210, 255, 0.15)' : 'none',
+                  opacity: isLocked ? 0.7 : 1,
+                  boxShadow: isAvailable ? 'var(--ds-card-shadow)' : 'none',
                 }}
               >
                 {/* Step Index & Status Icon */}
@@ -136,8 +136,8 @@ export function LearningJourneyRoadmap() {
                       color: isAvailable
                         ? 'var(--ds-cyan)'
                         : isCompleted
-                        ? '#24a148'
-                        : '#6f6f6f',
+                        ? 'var(--ds-emerald)'
+                        : 'var(--ds-text-muted)',
                     }}
                   >
                     {step.num}
@@ -145,7 +145,7 @@ export function LearningJourneyRoadmap() {
 
                   <div>
                     {isCompleted ? (
-                      <CheckmarkOutline size={18} style={{ color: '#24a148' }} />
+                      <CheckmarkOutline size={18} style={{ color: 'var(--ds-emerald)' }} />
                     ) : isAvailable ? (
                       <span
                         style={{
@@ -161,7 +161,7 @@ export function LearningJourneyRoadmap() {
                         <PlayFilledAlt size={12} /> ACTIVE
                       </span>
                     ) : (
-                      <Locked size={16} style={{ color: '#6f6f6f' }} />
+                      <Locked size={16} style={{ color: 'var(--ds-text-muted)' }} />
                     )}
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export function LearningJourneyRoadmap() {
                   style={{
                     fontSize: '1.125rem',
                     fontWeight: 600,
-                    color: isLocked ? '#a8a8a8' : '#ffffff',
+                    color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-text-primary)',
                     margin: '0 0 0.5rem 0',
                   }}
                 >
@@ -182,7 +182,7 @@ export function LearningJourneyRoadmap() {
                 <p
                   style={{
                     fontSize: '0.8125rem',
-                    color: isLocked ? '#6f6f6f' : '#c6c6c6',
+                    color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-text-secondary)',
                     lineHeight: 1.45,
                     margin: 0,
                     flexGrow: 1,
