@@ -26,8 +26,14 @@ import { RealWorldShowcase } from './interactives/RealWorldShowcase';
 import { ThinkingChecklist } from './interactives/ThinkingChecklist';
 import { DataScienceVenn } from './interactives/DataScienceVenn';
 
+// Topic 1.2 Interactives Suite
+import { DataTeamSimulator } from './interactives/DataTeamSimulator';
+import { RolePipelineExplorer } from './interactives/RolePipelineExplorer';
+import { ToolMatcher } from './interactives/ToolMatcher';
+import { RoleToolMatrix } from './interactives/RoleToolMatrix';
+import { BuildYourDataTeam } from './interactives/BuildYourDataTeam';
+
 // Other Topic Interactives
-import { RoleMatrixExplorer } from './interactives/RoleMatrixExplorer';
 import { VariableMemoryInspector } from './interactives/VariableMemoryInspector';
 import { ExecutionFlowSimulator } from './interactives/ExecutionFlowSimulator';
 import { FunctionTransformer } from './interactives/FunctionTransformer';
@@ -40,13 +46,15 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const module1 = modules.find((m) => m.id === 'module-1');
 
   const isTopic1_1 = lesson.id === 'm1-t1' || lesson.slug === 'data-science-introduction';
+  const isTopic1_2 = lesson.id === 'm1-t2' || lesson.slug === 'roles-and-tools-in-data-science';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
       case 'venn':
         return <DataScienceVenn />;
       case 'role-matrix':
-        return <RoleMatrixExplorer />;
+        // For Topic 1.2 we render the comprehensive RoleToolMatrix in the flow
+        return null;
       case 'variable-memory':
         return <VariableMemoryInspector />;
       case 'execution-flow':
@@ -87,8 +95,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             <LessonHero lesson={lesson} />
             <StorySection hook={lesson.hook} />
 
-            {/* Special Topic 1.1 Interactive Experience 1: Data -> Info -> Insight -> Decision */}
+            {/* Topic 1.1 Interactive Experience 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
+
+            {/* Topic 1.2 Interactive Experience 1: Data Team Simulator */}
+            {isTopic1_2 && <DataTeamSimulator />}
 
             <ConceptSection
               coreConcept={lesson.coreConcept}
@@ -98,20 +109,32 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Interactive Block for Topic (e.g. Venn Diagram for 1.1, Memory for 1.3, etc.) */}
             {renderInteractiveBlock()}
 
-            {/* Special Topic 1.1 Interactive Experience 2: 9-Stage Iterative Lifecycle */}
+            {/* Topic 1.1 Interactive Experience 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
 
-            {/* Special Topic 1.1 Interactive Experience 3: 4 Types of Questions */}
+            {/* Topic 1.2 Interactive Experience 2: Role Pipeline Explorer */}
+            {isTopic1_2 && <RolePipelineExplorer />}
+
+            {/* Topic 1.1 Interactive Experience 3: 4 Types of Questions */}
             {isTopic1_1 && <QuestionTypesExplorer />}
 
-            {/* Special Topic 1.1 Interactive Experience 4: Real World Ecosystem */}
+            {/* Topic 1.2 Interactive Experience 3: Tool Matcher */}
+            {isTopic1_2 && <ToolMatcher />}
+
+            {/* Topic 1.1 Interactive Experience 4: Real World Ecosystem */}
             {isTopic1_1 && <RealWorldShowcase />}
+
+            {/* Topic 1.2 Interactive Experience 4: Role + Tool Connection Matrix */}
+            {isTopic1_2 && <RoleToolMatrix />}
 
             {/* Code Examples Playground */}
             <CodePlayground examples={lesson.codeExamples} />
 
-            {/* Special Topic 1.1 Interactive Experience 5: Thinking Like a Data Scientist 7-Step Checklist */}
+            {/* Topic 1.1 Interactive Experience 5: Thinking Checklist */}
             {isTopic1_1 && <ThinkingChecklist />}
+
+            {/* Topic 1.2 Interactive Experience 5: Build Your Data Team Challenge */}
+            {isTopic1_2 && <BuildYourDataTeam />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
@@ -151,74 +174,91 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
                 max={100}
                 size="small"
                 hideLabel
-                label="Module 1 Progress"
-                status={module1?.progress === 100 ? 'finished' : 'active'}
+                label="Module 1"
               />
             </div>
 
-            {/* Topics Syllabus List */}
+            {/* Topics Syllabus Accordion */}
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1.25rem',
                 borderRadius: '4px',
-                border: '1px solid var(--ds-border-subtle)',
+                border: '1px solid var(--ds-border-strong)',
+                overflow: 'hidden',
               }}
             >
-              <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ds-text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div
+                style={{
+                  padding: '0.875rem 1rem',
+                  borderBottom: '1px solid var(--ds-border-subtle)',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  color: 'var(--ds-text-primary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
                 <Catalog size={16} style={{ color: 'var(--ds-cyan)' }} />
                 <span>Module 1 Topics (7)</span>
               </div>
 
-              <nav aria-label="Topic navigation">
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {module1LessonList.map((top) => {
-                    const isCurrent = top.slug === lesson.slug;
-                    const isDone = isTopicCompleted(top.id);
+              <div style={{ padding: '0.5rem 0' }}>
+                {module1LessonList.map((top, idx) => {
+                  const isCurrent = top.slug === lesson.slug;
+                  const isDone = isTopicCompleted(top.id);
 
-                    return (
-                      <li key={top.id}>
-                        <Link
-                          href={`/modules/module-1/${top.slug}`}
+                  return (
+                    <Link
+                      key={top.id}
+                      href={`/modules/module-1/${top.slug}`}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '0.625rem 1rem',
+                        background: isCurrent ? 'var(--ds-cyan-dim)' : 'transparent',
+                        borderLeft: isCurrent ? '3px solid var(--ds-cyan)' : '3px solid transparent',
+                        textDecoration: 'none',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+                        <span
                           style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '8px 10px',
-                            background: isCurrent
-                              ? 'var(--ds-cyan-dim)'
-                              : 'var(--cds-layer-02)',
-                            border: isCurrent
-                              ? '1.5px solid var(--ds-cyan)'
-                              : '1px solid var(--ds-border-subtle)',
-                            borderRadius: '3px',
-                            textDecoration: 'none',
-                            fontSize: '0.8125rem',
-                            color: isCurrent
-                              ? 'var(--ds-cyan)'
-                              : isDone
-                              ? 'var(--ds-emerald)'
-                              : 'var(--ds-text-secondary)',
-                            fontWeight: isCurrent ? 600 : 400,
-                            transition: 'all 0.15s ease',
+                            fontFamily: 'var(--ds-font-mono)',
+                            fontSize: '0.75rem',
+                            color: isCurrent ? 'var(--ds-cyan)' : 'var(--ds-text-muted)',
+                            flexShrink: 0,
                           }}
                         >
-                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            <span style={{ fontFamily: 'var(--ds-font-mono)', fontSize: '0.75rem' }}>{top.topicNumber}</span>
-                            <span>{top.title}</span>
-                          </span>
+                          0{idx + 1}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: '0.8125rem',
+                            fontWeight: isCurrent ? 600 : 400,
+                            color: isCurrent ? 'var(--ds-text-primary)' : 'var(--ds-text-secondary)',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {top.title}
+                        </span>
+                      </div>
 
-                          {isDone ? (
-                            <CheckmarkFilled size={14} style={{ color: 'var(--ds-emerald)', flexShrink: 0 }} />
-                          ) : isCurrent ? (
-                            <PlayFilledAlt size={12} style={{ color: 'var(--ds-cyan)', flexShrink: 0 }} />
-                          ) : null}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
+                      <div style={{ flexShrink: 0, marginLeft: '6px' }}>
+                        {isDone ? (
+                          <CheckmarkFilled size={14} style={{ color: 'var(--ds-emerald)' }} />
+                        ) : isCurrent ? (
+                          <PlayFilledAlt size={12} style={{ color: 'var(--ds-cyan)' }} />
+                        ) : null}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </aside>
         </div>
