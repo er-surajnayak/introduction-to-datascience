@@ -42,6 +42,17 @@ import { NamingChecker } from './interactives/NamingChecker';
 import { FromValueToDataset } from './interactives/FromValueToDataset';
 import { StudentProfileBuilder } from './interactives/StudentProfileBuilder';
 
+// Topic 1.4 Interactives Suite
+import { ConditionChecker } from './interactives/ConditionChecker';
+import { GradeDecisionTree } from './interactives/GradeDecisionTree';
+import { BooleanPlayground } from './interactives/BooleanPlayground';
+import { ForLoopVisualizer } from './interactives/ForLoopVisualizer';
+import { RangeBuilder } from './interactives/RangeBuilder';
+import { WhileLoopVisualizer } from './interactives/WhileLoopVisualizer';
+import { BreakVsContinue } from './interactives/BreakVsContinue';
+import { DryRunSimulator } from './interactives/DryRunSimulator';
+import { AnalyzeTheClassChallenge } from './interactives/AnalyzeTheClassChallenge';
+
 // Other Topic Interactives
 import { ExecutionFlowSimulator } from './interactives/ExecutionFlowSimulator';
 import { FunctionTransformer } from './interactives/FunctionTransformer';
@@ -56,6 +67,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_1 = lesson.id === 'm1-t1' || lesson.slug === 'data-science-introduction';
   const isTopic1_2 = lesson.id === 'm1-t2' || lesson.slug === 'roles-and-tools-in-data-science';
   const isTopic1_3 = lesson.id === 'm1-t3' || lesson.slug === 'python-refresher-variables';
+  const isTopic1_4 = lesson.id === 'm1-t4' || lesson.slug === 'control-structures';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -63,10 +75,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
         return <DataScienceVenn />;
       case 'role-matrix':
       case 'variable-memory':
-        // For Topics 1.2 and 1.3 we render custom multi-step interactives in the stream
-        return null;
       case 'execution-flow':
-        return <ExecutionFlowSimulator />;
+        // For custom multi-step topics we render modular interactives in the stream
+        return null;
       case 'function-transformer':
         return <FunctionTransformer />;
       case 'jupyter-runner':
@@ -79,11 +90,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   };
 
   return (
-    <div style={{ padding: '2rem 0 6rem 0', background: 'var(--cds-background)', minHeight: '90vh' }}>
+    <div style={{ background: 'var(--ds-bg-core)', minHeight: '100vh', padding: '2rem 0' }}>
       <div className="ds-container">
         {/* Breadcrumb Navigation */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <Breadcrumb noTrailingSlash aria-label="Breadcrumb navigation">
+          <Breadcrumb noTrailingSlash aria-label="Topic Navigation">
             <BreadcrumbItem>
               <Link href="/">Dashboard</Link>
             </BreadcrumbItem>
@@ -112,6 +123,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.3 Interactive 1: Variable Lab */}
             {isTopic1_3 && <VariableLab />}
 
+            {/* Topic 1.4 Interactive 1: Condition Checker */}
+            {isTopic1_4 && <ConditionChecker />}
+
             <ConceptSection
               coreConcept={lesson.coreConcept}
               technicalExplanation={lesson.technicalExplanation}
@@ -129,6 +143,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.3 Interactive 2: Type Detective */}
             {isTopic1_3 && <TypeDetective />}
 
+            {/* Topic 1.4 Interactive 2: Grade Decision Playground (if/elif/else tree) */}
+            {isTopic1_4 && <GradeDecisionTree />}
+
             {/* Topic 1.1 Interactive 3: 4 Types of Questions */}
             {isTopic1_1 && <QuestionTypesExplorer />}
 
@@ -137,6 +154,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.3 Interactive 3: Dynamic Typing Timeline */}
             {isTopic1_3 && <TypeShiftTimeline />}
+
+            {/* Topic 1.4 Interactive 3: Boolean Logic & Short-Circuit Explorer */}
+            {isTopic1_4 && <BooleanPlayground />}
 
             {/* Topic 1.1 Interactive 4: Real World Ecosystem */}
             {isTopic1_1 && <RealWorldShowcase />}
@@ -147,8 +167,20 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.3 Interactive 4: Type Conversion Workbench */}
             {isTopic1_3 && <ConversionLab />}
 
+            {/* Topic 1.4 Interactive 4: For Loop Iterator Visualizer */}
+            {isTopic1_4 && <ForLoopVisualizer />}
+
             {/* Topic 1.3 Interactive 5: Python Naming Checker */}
             {isTopic1_3 && <NamingChecker />}
+
+            {/* Topic 1.4 Interactive 5: range() Sequence Generator */}
+            {isTopic1_4 && <RangeBuilder />}
+
+            {/* Topic 1.4 Interactive 6: While Loop Simulator */}
+            {isTopic1_4 && <WhileLoopVisualizer />}
+
+            {/* Topic 1.4 Interactive 7: Break vs Continue Playground */}
+            {isTopic1_4 && <BreakVsContinue />}
 
             {/* Code Examples Playground */}
             <CodePlayground examples={lesson.codeExamples} />
@@ -162,8 +194,14 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.3 Interactive 6: From Value To Dataset Bridge */}
             {isTopic1_3 && <FromValueToDataset />}
 
+            {/* Topic 1.4 Interactive 8: Trace Table Simulator */}
+            {isTopic1_4 && <DryRunSimulator />}
+
             {/* Topic 1.3 Mini Challenge: Build a Student Profile */}
             {isTopic1_3 && <StudentProfileBuilder />}
+
+            {/* Topic 1.4 Mini Challenge: Analyze the Class */}
+            {isTopic1_4 && <AnalyzeTheClassChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
