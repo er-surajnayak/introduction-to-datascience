@@ -53,9 +53,18 @@ import { BreakVsContinue } from './interactives/BreakVsContinue';
 import { DryRunSimulator } from './interactives/DryRunSimulator';
 import { AnalyzeTheClassChallenge } from './interactives/AnalyzeTheClassChallenge';
 
+// Topic 1.5 Interactives Suite
+import { FunctionAnatomy } from './interactives/FunctionAnatomy';
+import { ParameterSlotMachine } from './interactives/ParameterSlotMachine';
+import { PrintVsReturnLab } from './interactives/PrintVsReturnLab';
+import { InteractiveFunctionBuilder } from './interactives/InteractiveFunctionBuilder';
+import { DefaultParamPlayground } from './interactives/DefaultParamPlayground';
+import { ArgumentOrderLab } from './interactives/ArgumentOrderLab';
+import { ScopeVisualizer } from './interactives/ScopeVisualizer';
+import { FunctionPipelineVisualizer } from './interactives/FunctionPipelineVisualizer';
+import { DataScienceToolkitChallenge } from './interactives/DataScienceToolkitChallenge';
+
 // Other Topic Interactives
-import { ExecutionFlowSimulator } from './interactives/ExecutionFlowSimulator';
-import { FunctionTransformer } from './interactives/FunctionTransformer';
 import { JupyterCellRunner } from './interactives/JupyterCellRunner';
 import { NumpyVectorizationBenchmark } from './interactives/NumpyVectorizationBenchmark';
 
@@ -68,6 +77,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_2 = lesson.id === 'm1-t2' || lesson.slug === 'roles-and-tools-in-data-science';
   const isTopic1_3 = lesson.id === 'm1-t3' || lesson.slug === 'python-refresher-variables';
   const isTopic1_4 = lesson.id === 'm1-t4' || lesson.slug === 'control-structures';
+  const isTopic1_5 = lesson.id === 'm1-t5' || lesson.slug === 'functions-and-modularity';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -76,10 +86,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
       case 'role-matrix':
       case 'variable-memory':
       case 'execution-flow':
+      case 'function-transformer':
         // For custom multi-step topics we render modular interactives in the stream
         return null;
-      case 'function-transformer':
-        return <FunctionTransformer />;
       case 'jupyter-runner':
         return <JupyterCellRunner />;
       case 'numpy-benchmark':
@@ -126,6 +135,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.4 Interactive 1: Condition Checker */}
             {isTopic1_4 && <ConditionChecker />}
 
+            {/* Topic 1.5 Interactive 1: Function Anatomy Explorer */}
+            {isTopic1_5 && <FunctionAnatomy />}
+
             <ConceptSection
               coreConcept={lesson.coreConcept}
               technicalExplanation={lesson.technicalExplanation}
@@ -146,6 +158,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.4 Interactive 2: Grade Decision Playground (if/elif/else tree) */}
             {isTopic1_4 && <GradeDecisionTree />}
 
+            {/* Topic 1.5 Interactive 2: Parameter Slot Machine */}
+            {isTopic1_5 && <ParameterSlotMachine />}
+
             {/* Topic 1.1 Interactive 3: 4 Types of Questions */}
             {isTopic1_1 && <QuestionTypesExplorer />}
 
@@ -157,6 +172,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.4 Interactive 3: Boolean Logic & Short-Circuit Explorer */}
             {isTopic1_4 && <BooleanPlayground />}
+
+            {/* Topic 1.5 Interactive 3: print() vs return Lab */}
+            {isTopic1_5 && <PrintVsReturnLab />}
 
             {/* Topic 1.1 Interactive 4: Real World Ecosystem */}
             {isTopic1_1 && <RealWorldShowcase />}
@@ -170,17 +188,29 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.4 Interactive 4: For Loop Iterator Visualizer */}
             {isTopic1_4 && <ForLoopVisualizer />}
 
+            {/* Topic 1.5 Interactive 4: Interactive Function Builder */}
+            {isTopic1_5 && <InteractiveFunctionBuilder />}
+
             {/* Topic 1.3 Interactive 5: Python Naming Checker */}
             {isTopic1_3 && <NamingChecker />}
 
             {/* Topic 1.4 Interactive 5: range() Sequence Generator */}
             {isTopic1_4 && <RangeBuilder />}
 
+            {/* Topic 1.5 Interactive 5: Default Parameter Playground */}
+            {isTopic1_5 && <DefaultParamPlayground />}
+
             {/* Topic 1.4 Interactive 6: While Loop Simulator */}
             {isTopic1_4 && <WhileLoopVisualizer />}
 
+            {/* Topic 1.5 Interactive 6: Positional vs Keyword Argument Mapper */}
+            {isTopic1_5 && <ArgumentOrderLab />}
+
             {/* Topic 1.4 Interactive 7: Break vs Continue Playground */}
             {isTopic1_4 && <BreakVsContinue />}
+
+            {/* Topic 1.5 Interactive 7: Scope Visualizer */}
+            {isTopic1_5 && <ScopeVisualizer />}
 
             {/* Code Examples Playground */}
             <CodePlayground examples={lesson.codeExamples} />
@@ -197,11 +227,17 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.4 Interactive 8: Trace Table Simulator */}
             {isTopic1_4 && <DryRunSimulator />}
 
+            {/* Topic 1.5 Interactive 8: Function Composition Pipeline */}
+            {isTopic1_5 && <FunctionPipelineVisualizer />}
+
             {/* Topic 1.3 Mini Challenge: Build a Student Profile */}
             {isTopic1_3 && <StudentProfileBuilder />}
 
             {/* Topic 1.4 Mini Challenge: Analyze the Class */}
             {isTopic1_4 && <AnalyzeTheClassChallenge />}
+
+            {/* Topic 1.5 Mini Challenge: Data Science Toolkit */}
+            {isTopic1_5 && <DataScienceToolkitChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
