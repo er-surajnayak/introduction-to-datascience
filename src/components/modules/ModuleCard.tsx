@@ -66,11 +66,11 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
       transition={{ duration: 0.4, delay: index * 0.08 }}
       whileHover={!isLocked ? { y: -4, transition: { duration: 0.2 } } : {}}
       style={{
-        background: isLocked ? '#13161c' : 'var(--ds-bg-surface)',
+        background: 'var(--ds-bg-surface)',
         border: isLocked
           ? '1px solid var(--ds-border-subtle)'
           : isCompleted
-          ? '1px solid rgba(36, 161, 72, 0.4)'
+          ? '1px solid var(--ds-emerald)'
           : '1px solid var(--ds-border-strong)',
         borderRadius: '4px',
         display: 'flex',
@@ -78,7 +78,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
         position: 'relative',
         overflow: 'hidden',
         boxShadow: isLocked ? 'none' : 'var(--ds-card-shadow)',
-        opacity: isLocked ? 0.78 : 1,
+        opacity: isLocked ? 0.8 : 1,
         transition: 'all 0.25s ease',
       }}
     >
@@ -88,10 +88,10 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
           height: '4px',
           width: '100%',
           background: isLocked
-            ? '#2d3343'
+            ? 'var(--ds-border-subtle)'
             : isCompleted
-            ? '#24a148'
-            : 'linear-gradient(90deg, #00d2ff, #0f62fe)',
+            ? 'var(--ds-emerald)'
+            : 'var(--ds-hero-gradient)',
         }}
       />
 
@@ -113,8 +113,8 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
                 fontFamily: 'var(--ds-font-mono)',
                 fontSize: '1rem',
                 fontWeight: 700,
-                color: isLocked ? '#8d8d8d' : 'var(--ds-cyan)',
-                background: 'rgba(255, 255, 255, 0.04)',
+                color: isLocked ? 'var(--ds-text-muted)' : 'var(--ds-cyan)',
+                background: 'var(--ds-bg-surface-elevated)',
                 padding: '4px 8px',
                 borderRadius: '2px',
                 border: '1px solid var(--ds-border-subtle)',

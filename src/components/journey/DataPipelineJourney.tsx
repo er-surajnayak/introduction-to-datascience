@@ -9,24 +9,23 @@ import {
   SearchLocate,
   Time,
   ChartLineSmooth,
-  ArrowRight,
 } from '@carbon/icons-react';
 import { learningPipelineSteps } from '@/data/courseData';
 
 const iconMap: Record<string, React.ReactNode> = {
-  DATA: <DataEnrichment size={28} />,
-  CLEAN: <Clean size={28} />,
-  EXPLORE: <SearchLocate size={28} />,
-  UNDERSTAND: <Time size={28} />,
-  PREDICT: <ChartLineSmooth size={28} />,
+  DATA: <DataEnrichment size={26} />,
+  CLEAN: <Clean size={26} />,
+  EXPLORE: <SearchLocate size={26} />,
+  UNDERSTAND: <Time size={26} />,
+  PREDICT: <ChartLineSmooth size={26} />,
 };
 
 const colorMap: Record<string, { accent: string; bg: string; border: string }> = {
-  DATA: { accent: '#00d2ff', bg: 'rgba(0, 210, 255, 0.08)', border: 'rgba(0, 210, 255, 0.3)' },
-  CLEAN: { accent: '#009d9a', bg: 'rgba(0, 157, 154, 0.08)', border: 'rgba(0, 157, 154, 0.3)' },
-  EXPLORE: { accent: '#0f62fe', bg: 'rgba(15, 98, 254, 0.08)', border: 'rgba(15, 98, 254, 0.3)' },
-  UNDERSTAND: { accent: '#8a3ffc', bg: 'rgba(138, 63, 252, 0.08)', border: 'rgba(138, 63, 252, 0.3)' },
-  PREDICT: { accent: '#198038', bg: 'rgba(25, 128, 56, 0.08)', border: 'rgba(25, 128, 56, 0.3)' },
+  DATA: { accent: 'var(--ds-cyan)', bg: 'var(--ds-cyan-dim)', border: 'var(--ds-cyan)' },
+  CLEAN: { accent: 'var(--ds-teal)', bg: 'var(--ds-teal-dim)', border: 'var(--ds-teal)' },
+  EXPLORE: { accent: 'var(--ds-blue)', bg: 'rgba(15, 98, 254, 0.1)', border: '#0f62fe' },
+  UNDERSTAND: { accent: 'var(--ds-purple)', bg: 'var(--ds-purple-dim)', border: 'var(--ds-purple)' },
+  PREDICT: { accent: 'var(--ds-emerald)', bg: 'var(--ds-emerald-dim)', border: 'var(--ds-emerald)' },
 };
 
 export function DataPipelineJourney() {
@@ -35,7 +34,7 @@ export function DataPipelineJourney() {
       id="journey"
       style={{
         padding: '5rem 0',
-        background: 'linear-gradient(180deg, var(--ds-bg-core) 0%, #12151d 100%)',
+        background: 'var(--ds-bg-core)',
         borderBottom: '1px solid var(--ds-border-subtle)',
       }}
     >
@@ -89,7 +88,7 @@ export function DataPipelineJourney() {
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 style={{
                   background: 'var(--ds-bg-surface)',
-                  border: `1px solid ${colors.border}`,
+                  border: '1px solid var(--ds-border-subtle)',
                   padding: '1.5rem',
                   borderRadius: '4px',
                   display: 'flex',
@@ -184,11 +183,12 @@ export function DataPipelineJourney() {
                       style={{
                         fontFamily: 'var(--ds-font-mono)',
                         fontSize: '0.75rem',
-                        padding: '2px 6px',
-                        background: 'rgba(255, 255, 255, 0.05)',
+                        fontWeight: 500,
+                        padding: '3px 8px',
+                        background: 'var(--ds-bg-surface-elevated)',
                         border: '1px solid var(--ds-border-subtle)',
-                        borderRadius: '2px',
-                        color: '#e0e0e0',
+                        borderRadius: '3px',
+                        color: 'var(--ds-text-primary)',
                       }}
                     >
                       {t}

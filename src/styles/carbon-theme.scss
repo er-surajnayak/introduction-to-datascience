@@ -64,11 +64,11 @@ html.cds--g100 {
 // Light Mode Carbon White theme
 html.cds--white {
   --ds-bg-core: #ffffff;
-  --ds-bg-surface: #f4f4f4;
-  --ds-bg-surface-elevated: #ffffff;
-  --ds-bg-card-hover: #e8e8e8;
+  --ds-bg-surface: #ffffff;
+  --ds-bg-surface-elevated: #f4f4f4;
+  --ds-bg-card-hover: #f0f0f0;
   --ds-border-subtle: #e0e0e0;
-  --ds-border-strong: #c6c6c6;
+  --ds-border-strong: #8d8d8d;
   --ds-text-primary: #161616;
   --ds-text-secondary: #525252;
   --ds-text-muted: #6f6f6f;
@@ -84,8 +84,8 @@ html.cds--white {
   --ds-amber: #b28600;
   --ds-amber-dim: rgba(178, 134, 0, 0.08);
   --ds-hero-gradient: linear-gradient(135deg, #00629b 0%, #0f62fe 50%, #6929c4 100%);
-  --ds-hero-radial: radial-gradient(ellipse at center, rgba(15, 98, 254, 0.08) 0%, rgba(0, 98, 155, 0.03) 50%, transparent 70%);
-  --ds-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --ds-hero-radial: radial-gradient(ellipse at center, rgba(15, 98, 254, 0.06) 0%, rgba(0, 98, 155, 0.02) 50%, transparent 70%);
+  --ds-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 // Background Grid Pattern that adapts to Light and Dark Carbon themes

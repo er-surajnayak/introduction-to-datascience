@@ -7,7 +7,7 @@ import {
   CheckmarkOutline,
   Locked,
   PlayFilledAlt,
-  FlowData,
+  ArrowRight,
 } from '@carbon/icons-react';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 
@@ -51,7 +51,7 @@ export function LearningJourneyRoadmap() {
     <section
       style={{
         padding: '5rem 0',
-        background: 'linear-gradient(180deg, #12151d 0%, var(--ds-bg-core) 100%)',
+        background: 'var(--ds-bg-core)',
         borderBottom: '1px solid var(--ds-border-subtle)',
       }}
     >
@@ -115,7 +115,7 @@ export function LearningJourneyRoadmap() {
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  opacity: isLocked ? 0.7 : 1,
+                  opacity: isLocked ? 0.75 : 1,
                   boxShadow: isAvailable ? 'var(--ds-card-shadow)' : 'none',
                 }}
               >
@@ -191,20 +191,24 @@ export function LearningJourneyRoadmap() {
                   {step.subtitle}
                 </p>
 
-                {/* Step Bottom Connection Arrow Indicator */}
+                {/* Step Bottom Connection Indicator */}
                 {idx < roadmapSteps.length - 1 && (
                   <div
                     style={{
                       marginTop: '1rem',
-                      paddingTop: '0.5rem',
+                      paddingTop: '0.75rem',
                       borderTop: '1px dashed var(--ds-border-subtle)',
-                      textAlign: 'right',
-                      color: isAvailable ? 'var(--ds-cyan)' : '#525252',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                      gap: '4px',
                       fontSize: '0.75rem',
                       fontFamily: 'var(--ds-font-mono)',
+                      color: isAvailable ? 'var(--ds-cyan)' : 'var(--ds-text-muted)',
                     }}
                   >
-                    NEXT STEP →
+                    <span>NEXT STEP</span>
+                    <ArrowRight size={12} />
                   </div>
                 )}
               </motion.div>
