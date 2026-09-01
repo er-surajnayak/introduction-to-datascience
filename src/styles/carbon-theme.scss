@@ -1,0 +1,80 @@
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/themes' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/spacing' as *;
+
+// Global custom tokens mapped to Carbon role tokens with DS laboratory accents
+:root {
+  // Use official Carbon CSS Custom Properties with safe fallbacks
+  --ds-bg-core: var(--cds-background, #0f1117);
+  --ds-bg-surface: var(--cds-layer-01, #161a22);
+  --ds-bg-surface-elevated: var(--cds-layer-02, #1f2430);
+  --ds-bg-card-hover: var(--cds-layer-hover-01, #262c3b);
+  --ds-border-subtle: var(--cds-border-subtle-01, rgba(255, 255, 255, 0.12));
+  --ds-border-strong: var(--cds-border-strong-01, rgba(255, 255, 255, 0.24));
+  --ds-text-primary: var(--cds-text-primary, #f4f4f4);
+  --ds-text-secondary: var(--cds-text-secondary, #c6c6c6);
+  --ds-text-muted: var(--cds-text-helper, #8d8d8d);
+  
+  // Data Science Accents (Role-harmonized)
+  --ds-cyan: #0072c3;
+  --ds-cyan-dim: rgba(0, 114, 195, 0.12);
+  --ds-blue: #0f62fe;
+  --ds-purple: #8a3ffc;
+  --ds-purple-dim: rgba(138, 63, 252, 0.12);
+  --ds-teal: #009d9a;
+  --ds-teal-dim: rgba(0, 157, 154, 0.12);
+  --ds-emerald: #198038;
+  --ds-emerald-dim: rgba(25, 128, 56, 0.12);
+  --ds-amber: #b28600;
+  
+  // Typography
+  --ds-font-mono: 'IBM Plex Mono', monospace, ui-monospace;
+  --ds-font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  // Elevation / Shadow
+  --ds-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+// Dark Mode Overrides for High-Contrast Lab Glows
+html.cds--g100 {
+  --ds-cyan: #00d2ff;
+  --ds-cyan-dim: rgba(0, 210, 255, 0.14);
+  --ds-amber: #f1c21b;
+  --ds-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+html.cds--white {
+  --ds-cyan: #00629b;
+  --ds-cyan-dim: rgba(0, 98, 155, 0.08);
+  --ds-border-subtle: rgba(0, 0, 0, 0.08);
+  --ds-border-strong: rgba(0, 0, 0, 0.18);
+  --ds-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+// Background Grid Pattern that adapts to Light and Dark Carbon themes
+.ds-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, var(--ds-border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ds-border-subtle) 1px, transparent 1px);
+}
+
+// Glassmorphic Tile Layer
+.ds-glass-panel {
+  background: var(--ds-bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ds-border-subtle);
+}
+
+// Code & Formula Highlighting
+.ds-code-badge {
+  font-family: var(--ds-font-mono);
+  font-size: 0.8125rem;
+  background: var(--cds-layer-02, rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--ds-border-subtle);
+  color: var(--ds-cyan);
+  padding: 2px 6px;
+  border-radius: 2px;
+}

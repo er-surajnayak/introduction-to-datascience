@@ -1,0 +1,34 @@
+{
+  "name": "introduction-to-datascience",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@carbon/icons-react": "^11.53.0",
+    "@carbon/react": "^1.72.0",
+    "@carbon/styles": "^1.70.0",
+    "@react-three/drei": "^9.121.5",
+    "@react-three/fiber": "^8.18.0",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.12.7",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.85.0",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.19",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/three": "^0.169.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.24",
+    "typescript": "^5.7.3"
+  }
+}
