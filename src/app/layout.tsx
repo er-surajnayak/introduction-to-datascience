@@ -11,10 +11,11 @@ export const metadata: Metadata = {
     'A premium interactive digital notes platform for 2nd-year engineering students studying Introduction to Data Science. Explore Python, NumPy, Pandas, EDA, Time Series, and Linear Regression through visual computational labs.',
   icons: {
     icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico' },
       { url: '/icon.png', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/icon.svg',
     apple: '/apple-icon.png',
   },
   keywords: [
