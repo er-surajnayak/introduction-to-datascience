@@ -27,13 +27,25 @@ export function Footer() {
         >
           {/* Brand & Purpose */}
           <div style={{ maxWidth: '340px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.375rem' }}>
               <span style={{ fontWeight: 700, fontSize: '1.125rem', color: 'var(--ds-text-primary)', letterSpacing: '-0.02em' }}>
                 DI NOTES
               </span>
               <span style={{ color: 'var(--ds-cyan)', fontWeight: 600, fontSize: '1rem' }}>
                 DATA SCIENCE
               </span>
+            </div>
+            <div
+              style={{
+                fontSize: '0.75rem',
+                fontFamily: 'var(--ds-font-mono)',
+                color: 'var(--ds-cyan)',
+                fontWeight: 600,
+                marginBottom: '0.875rem',
+                letterSpacing: '0.02em',
+              }}
+            >
+              A product by NayakLabs
             </div>
             <p style={{ lineHeight: 1.6, color: 'var(--ds-text-secondary)', fontSize: '0.875rem', margin: '0 0 1.25rem 0' }}>
               A high-craft interactive learning laboratory built for 2nd-year engineering students. Bridging mathematical models and real-world Python code.
@@ -170,7 +182,7 @@ export function Footer() {
           }}
         >
           <div>
-            © {new Date().getFullYear()} DI Notes — Introduction to Data Science (DS-201). All rights reserved.
+            © {new Date().getFullYear()} DI Notes — Introduction to Data Science (DS-201). A product by <strong style={{ color: 'var(--ds-text-primary)' }}>NayakLabs</strong>. All rights reserved.
           </div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <span>Explore → Experiment → Analyze → Build</span>

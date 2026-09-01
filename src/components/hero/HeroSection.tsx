@@ -91,6 +91,17 @@ export function HeroSection() {
             <span style={{ color: 'var(--ds-text-secondary)' }}>
               Interactive Digital Notes
             </span>
+            <span style={{ color: 'var(--ds-text-muted)' }}>•</span>
+            <span
+              style={{
+                color: 'var(--ds-cyan)',
+                fontFamily: 'var(--ds-font-mono)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+              }}
+            >
+              by NayakLabs
+            </span>
           </div>
 
           {/* Primary Heading */}

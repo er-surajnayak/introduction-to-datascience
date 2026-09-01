@@ -63,6 +63,17 @@ export function Navbar() {
             <span style={{ color: 'var(--ds-cyan)', fontWeight: 600, marginLeft: '4px' }}>
               DATA SCIENCE
             </span>
+            <span
+              style={{
+                marginLeft: '8px',
+                fontSize: '0.6875rem',
+                color: 'var(--ds-text-muted)',
+                fontFamily: 'var(--ds-font-mono)',
+                fontWeight: 400,
+              }}
+            >
+              by NayakLabs
+            </span>
           </HeaderName>
         </Link>
 
@@ -158,8 +169,8 @@ export function Navbar() {
             tooltipAlignment="end"
             onClick={() =>
               handleOpenUnavailable(
-                'About DI Notes — Data Science',
-                'A dedicated interactive learning laboratory for 2nd-year engineering students. Covering Python, NumPy, Pandas, Statistics, Time Series, and Linear Regression with hands-on computational visualizers.'
+                'About DI Notes (by NayakLabs)',
+                'DI Notes is a next-generation interactive learning laboratory engineered by NayakLabs for 2nd-year engineering students. Bridging mathematical models, interactive visualizers, and production Python code.'
               )
             }
           >
