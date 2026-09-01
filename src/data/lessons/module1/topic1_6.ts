@@ -6,127 +6,289 @@ export const topic1_6: LessonContent = {
   slug: 'introduction-to-jupyter-notebook',
   moduleId: 'module-1',
   title: 'Introduction to Jupyter Notebook',
-  subtitle: 'The Interactive Computing Paradigm: Kernels, Execution State & Magic Commands',
+  subtitle: 'Interactive Computing, Computational Kernels, Markdown & Reproducible Data Science',
   estimatedMinutes: 25,
   difficulty: 'Beginner',
-  tags: ['Jupyter', 'Notebooks', 'Kernel State', 'Magic Commands', 'REPL'],
+  tags: ['Jupyter', 'Notebooks', 'Kernel State', 'Markdown', 'Reproducibility', 'Data Science Workflow'],
   objectives: [
-    'Understand the client-kernel client/server architecture powering Jupyter Notebooks.',
-    'Deconstruct the JSON `.ipynb` format that stores code, rich HTML visual outputs, and Markdown.',
-    'Identify the "Hidden State Trap": why out-of-order cell execution causes non-reproducible research.',
-    'Leverage powerful IPython Magic Commands (`%timeit`, `%%time`, `%matplotlib inline`, `%who`).',
+    'Understand what a Jupyter Notebook is and why Data Scientists choose it over standard scripts.',
+    'Master the two fundamental cell types: Code cells for execution and Markdown cells for documentation.',
+    'Understand the interactive execution model: how the browser UI communicates with the background computational Kernel.',
+    'Dismantle the "Hidden State Trap": why cell execution order matters and how out-of-order execution breaks notebooks.',
+    'Learn how variables persist across cells in Kernel memory and how "Restart Kernel & Run All" ensures reproducibility.',
+    'Design clean, structured Data Science notebooks that tell an end-to-end analytical story from question to insight.',
   ],
   hook: {
-    title: 'The Scientist’s Computational Laboratory Notebook',
+    title: 'Imagine Your Python Code Had a Laboratory Notebook',
     story:
-      'For 400 years, experimental scientists recorded observations in leather-bound laboratory notebooks: sketches, formulas, hypotheses, and recorded measurements side-by-side. Traditional Python scripts (`.py` files) execute top-to-bottom and wipe memory on termination. Jupyter (Julia, Python, R) merges code, live computation, mathematical LaTeX equations, interactive charts, and explanatory text into a single living document.',
+      'For centuries, experimental scientists kept physical lab notebooks. On the left page, they wrote their hypothesis and experimental setup; on the right page, they recorded sensor measurements, sketched graphs, and documented their conclusions. Traditional software programming was isolated from this: you wrote Python code in one file, ran it in a dark terminal, and copied numbers into a spreadsheet to make a chart. Jupyter (Julia, Python, R) changes this forever by uniting executable code, live mathematical outputs, interactive charts, and rich narrative prose into a single living computational document.',
     analogy:
-      'A `.py` script is like a finished recorded movie. A Jupyter Notebook is a live rehearsal where you can pause time, inspect any actor, rewrite line 4, and re-run only that scene without restarting the play.',
+      'A traditional Python script (.py file) is like a pre-recorded movie: you press play and it runs straight through from start to finish. A Jupyter Notebook is like an interactive chemistry lab bench: you can mix chemicals in beaker 1, inspect the temperature in beaker 2, pause time, tweak the formula, and re-run only that specific step without restarting the whole experiment.',
     realWorldImpact:
-      'Jupyter is the primary prototyping environment used at Google, Netflix, NASA, and top universities for exploratory data research and model experimentation.',
+      'From analyzing petabytes of genomic data at NASA and CERN to building recommendation algorithms at Netflix and Spotify, Jupyter Notebooks are the undisputed standard environment for exploratory data science, machine learning research, and analytical storytelling.',
   },
   coreConcept: {
-    headline: 'The Decoupled Kernel & Cell Execution Model',
+    headline: 'Where Code, Explanation, Visuals & Insight Live Together',
     explanation:
-      'Jupyter runs as a two-process architecture: a web browser user interface and a background Python computational engine called the Kernel. The browser sends code cells over ZeroMQ sockets to the Kernel, which evaluates them in persistent memory and sends back rich representations.',
+      'A Jupyter Notebook is not just a code editor—it is an interactive computing environment. A notebook document (.ipynb file) consists of an ordered sequence of cells. Code cells send instructions to an underlying computational process called the Kernel, which evaluates the code, remembers created variables in RAM, and sends rich outputs (tables, numbers, charts, error logs) directly back to display underneath the cell.',
     keyPillars: [
       {
-        title: 'Persistent Kernel State',
-        description: 'Variables defined in Cell 1 remain stored in the Kernel’s RAM when you run Cell 2, 3, or 10.',
+        title: 'The Notebook Interface vs The Kernel Engine',
+        description:
+          'The Notebook is the visual document in your browser where you write text and code. The Kernel is the background Python process that actually executes the code and stores your variables in memory.',
       },
       {
-        title: 'Cell Types (Code & Markdown)',
-        description: 'Code cells execute Python and display outputs directly beneath; Markdown cells render formatted text, tables, and LaTeX math.',
+        title: 'Two Essential Cell Types: Code & Markdown',
+        description:
+          'Code cells execute live Python statements and produce immediate results. Markdown cells render formatted text, headings, bullet lists, mathematical equations, and analytical observations.',
       },
       {
-        title: 'Execution Counter `In [N]`',
-        description: 'The number `N` inside `In [N]` records the exact chronological sequence in which cells were run by the kernel.',
+        title: 'Chronological Execution Counter: In [N]',
+        description:
+          'The prompt In [N] records the exact chronological sequence in which cells were sent to the Kernel. In [1] ran first, In [2] second, and so on—regardless of where the cells are physically placed on the screen.',
+      },
+      {
+        title: 'Persistent Kernel Memory Namespace',
+        description:
+          'Variables created in Cell 1 stay alive in the Kernel memory. Any cell you execute later can access, modify, or compute with those same variables.',
       },
     ],
   },
   interactiveType: 'jupyter-runner',
   technicalExplanation: {
-    title: 'IPython Magic Commands & The Kernel Trap',
+    title: 'The Decoupled Architecture & The Execution Order Dilemma',
     deepDive:
-      'IPython provides special macro commands prefixed with `%` (line magics, operating on a single line) and `%%` (cell magics, operating on the entire multi-line block). The most dangerous rookie mistake in Jupyter is executing cells out of order, creating invisible state that breaks when the notebook is run from scratch.',
+      'Understanding how Jupyter works under the hood makes you immune to the common traps that confuse beginners. The notebook operates as a client-server system. When you press Shift + Enter inside a code cell, the browser packages your text and sends it via WebSockets to the Kernel process. The Kernel compiles the Python bytecode, updates its internal symbol table (global namespace), and sends back output streams (stdout, stderr, display data).\n\nBecause you can click and run cells in any arbitrary order, the visual order of cells on your screen can differ completely from the chronological order inside the Kernel memory. If you define a variable in Cell 3, run it, and then go up to Cell 1 and run code that uses that variable, it will work in your current session—but when a colleague opens your notebook and runs top-to-bottom, Cell 1 will crash with a NameError! That is why the golden rule of notebook engineering is "Restart Kernel and Run All".',
     bulletPoints: [
-      '`%timeit statement` runs a statement 100,000 times to compute statistically rigorous CPU benchmark averages.',
-      '`%%time` measures the exact wall-clock and CPU execution time of an entire cell.',
-      '`%who` or `%whos` lists all active variables currently held in the Kernel’s memory namespace.',
-      'Golden Rule of Notebooks: Before submitting or committing, always test: `Kernel → Restart & Run All`.',
+      'The Kernel maintains state: Variables, imported libraries, and defined functions stay loaded until you restart the Kernel.',
+      'Execution counter In [ ]: Empty brackets mean the cell has never been run; In [*] means the cell is currently computing; In [5] means it was the 5th execution.',
+      'Markdown supports formatting: # Header 1, ## Header 2, **bold**, *italic*, `code`, and bulleted lists for clean narrative explanations.',
+      'Last expression auto-display: In a Jupyter code cell, the result of the final line is automatically printed without needing an explicit print() call.',
+      'Restarting clears everything: Restarting the Kernel is like wiping a whiteboard clean—all variable names and imported modules vanish from RAM.',
     ],
   },
   codeExamples: [
     {
-      title: 'Benchmarking Vector Operations with %timeit Magic',
-      description: 'See how Jupyter magic commands allow instantaneous performance benchmarking.',
+      title: 'A Clean 4-Cell Data Science Notebook Pipeline',
+      description: 'See how Markdown and Code cells intertwine to build an end-to-end analytical report.',
       language: 'python',
-      code: `# In [1]:
-import numpy as np
+      code: `# Cell 1 [Markdown]:
+# # 📊 Student Examination Performance Analysis
+# In this notebook, we calculate summary statistics and performance benchmarks for DS-201 students.
 
-# In [2]: Benchmark Python List vs NumPy Array
-%timeit sum([i**2 for i in range(10000)])
-# Output: 2.85 ms ± 45.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# Cell 2 [Code] - In [1]:
+marks = [78, 85, 92, 67, 74, 88, 95, 61, 83, 79]
+total_students = len(marks)
+print(f"Loaded records for {total_students} students.")
 
-# In [3]: Vectorized NumPy Benchmark
-arr = np.arange(10000)
-%timeit np.sum(arr ** 2)
-# Output: 9.42 µs ± 112 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-# -> NumPy is 302x faster!
+# Cell 3 [Code] - In [2]:
+average_score = sum(marks) / total_students
+highest_score = max(marks)
+lowest_score = min(marks)
 
-# In [4]: Inspect active memory
-%whos`,
+# Auto-displaying summary tuple (last expression in cell):
+(average_score, highest_score, lowest_score)
+# Output: (78.2, 95, 61)
+
+# Cell 4 [Markdown]:
+# ## 💡 Key Observations
+# - The class average stands at **78.2%**, indicating strong overall comprehension.
+# - The score spread ranges from a low of **61%** to a peak of **95%**.`,
       lineExplanations: [
-        { line: 5, text: '%timeit runs the list comprehension across multiple loops to calculate precise mean execution duration.' },
-        { line: 10, text: 'NumPy vectorized power and sum executes in single-digit microseconds via SIMD instructions.' },
-        { line: 15, text: '%whos outputs variable names, types, and RAM footprints currently in Kernel memory.' },
+        { line: 1, text: 'Markdown cell establishing the title and objective before any code is run.' },
+        { line: 6, text: 'Cell In [1] defines the dataset and stores marks in persistent Kernel memory.' },
+        { line: 11, text: 'Cell In [2] reuses marks from Cell 1 to calculate mean, maximum, and minimum scores.' },
+        { line: 17, text: 'In Jupyter, the last evaluated expression is automatically rendered in the output box.' },
+        { line: 20, text: 'Markdown cell closing the analysis with structured insights and recommendations.' },
       ],
-      output: 'np.sum(arr ** 2) -> 9.42 µs (302x speedup over pure Python list)',
+      output: 'Loaded records for 10 students.\n(78.2, 95, 61)',
     },
   ],
   commonMistakes: [
     {
-      mistake: 'Committing a notebook with out-of-order execution numbers (e.g. In [15], In [2], In [8])',
-      why: 'When another engineer opens your notebook and runs it top-to-bottom, variables defined in lower cells will fail with `NameError` because you ran them in a different manual sequence.',
-      correction: 'Always run `Restart Kernel and Run All Cells` before sharing or committing `.ipynb` files.',
+      mistake: 'Running cells out of order and trusting invisible memory state',
+      why: 'If you execute Cell 3, then Cell 1, then Cell 2, the Kernel state reflects your clicking sequence, not the page order. When someone else opens the notebook and runs top-to-bottom, it fails with NameError or produces incorrect results.',
+      correction: 'Always design notebooks to run strictly from top to bottom. Before finishing, select "Kernel → Restart & Run All" to prove reproducibility.',
+    },
+    {
+      mistake: 'Forgetting that deleting a cell does NOT delete its variable from Kernel RAM',
+      why: 'If you define x = 50 in a cell, run it, and then delete the cell from your notebook, the variable x STILL lives inside the Kernel memory. You might write code that relies on x without realizing the cell that created it is gone.',
+      correction: 'Restart the Kernel whenever you delete or heavily reorganize code cells.',
+    },
+    {
+      mistake: 'Using code cells for long narrative explanations (or Markdown cells for code)',
+      why: 'Writing long paragraphs in code cells requires prefixing every line with # comments, which looks messy and unrendered. Putting code in Markdown cells prevents it from executing.',
+      correction: 'Use Markdown cells (M shortcut) for rich headers, paragraphs, and lists. Use Code cells (Y shortcut) exclusively for runnable Python logic.',
+    },
+    {
+      mistake: 'Running the same accumulator cell multiple times (e.g. total += 10)',
+      why: 'If a cell contains total = total + 10 and you press Shift + Enter 4 times, total increases by 40 because the cell runs against existing Kernel state every time.',
+      correction: 'Make cells idempotent where possible (assigning fresh calculations rather than mutating state repeatedly).',
+    },
+    {
+      mistake: 'Leaving messy scratchpad cells scattered across a project notebook',
+      why: 'Experimental cells left midway through a notebook confuse reviewers and clutter the analytical story.',
+      correction: 'Clean up temporary exploratory cells before sharing. Keep notebooks structured: Question → Data → Code → Chart → Insight.',
+    },
+    {
+      mistake: 'Not distinguishing between In [ ] (not run), In [*] (busy), and In [N] (completed)',
+      why: 'Attempting to run downstream cells while an upstream cell is still In [*] (processing) can lead to race conditions or unexpected outputs.',
+      correction: 'Look at the left margin: wait for In [*] to become a numbered In [N] before interpreting downstream results.',
     },
   ],
   thinkingStrategies: [
     {
-      question: 'When should I use a Jupyter Notebook vs a Python `.py` file?',
-      context: 'Organizing a data science project repository.',
-      reasoning: 'Use Jupyter Notebooks for exploratory data analysis (EDA), data visualization, reporting, and model experimentation. When code stabilizes into reusable functions and classes, refactor it into modular `.py` files inside a `src/` directory.',
-      ruleOfThumb: 'Notebooks for exploration & stories; `.py` scripts for production pipelines & packages.',
+      question: 'When should I use a Jupyter Notebook vs a standalone Python (.py) script?',
+      context: 'Choosing the right tool for a Data Science task.',
+      reasoning:
+        'Use Jupyter Notebooks for exploratory data analysis (EDA), data cleaning, hypothesis testing, plotting graphs, and sharing presentations with stakeholders. When logic stabilizes into production-ready pipelines or reusable libraries, refactor it into clean .py module files.',
+      ruleOfThumb: 'Notebooks for exploration & storytelling; .py files for automated production pipelines.',
+    },
+    {
+      question: 'How should I structure a professional Data Science notebook?',
+      context: 'Organizing an end-to-end data investigation.',
+      reasoning:
+        'A great notebook follows the 8-stage storytelling flow: 1. Objective Header (Markdown) → 2. Imports & Configuration → 3. Load & Inspect Raw Data → 4. Data Cleaning → 5. Exploratory Computations → 6. Visualizations → 7. Statistical Findings → 8. Business Decision / Conclusion.',
+      ruleOfThumb: 'Every code block should have a purpose, and every output should have an observation.',
     },
   ],
   quiz: [
     {
       id: 'q1-6-1',
-      question: 'What does the number 7 indicate in the prompt `In [7]:` next to a Jupyter notebook cell?',
+      question: 'What is the primary role of the computational Kernel in Jupyter?',
       options: [
-        'It is the 7th line of code in the cell',
-        'It is the 7th cell physically located from the top of the notebook',
-        'It is the 7th cell executed by the active kernel session',
-        'It took 7 milliseconds to execute',
+        'It formats Markdown text into HTML',
+        'It is the background engine that executes Python code and maintains variable memory',
+        'It is the browser user interface where cells are typed',
+        'It automatically exports the notebook to PDF',
       ],
-      correctIndex: 2,
-      explanation: 'The execution counter `In [N]` tracks the chronological order of execution. If you re-run the same cell, its counter will increment.',
+      correctIndex: 1,
+      explanation:
+        'The Kernel is the backend process (e.g. ipykernel) that evaluates code cells, allocates memory, stores variables, and returns computed results.',
     },
     {
       id: 'q1-6-2',
-      question: 'Which IPython magic command measures the execution time of an entire multi-line code cell?',
-      options: ['`%timeit`', '`%%time`', '`%benchmark`', '`%%profile`'],
+      question: 'What does the prompt In [*] signify next to a code cell?',
+      options: [
+        'The cell contains a syntax error',
+        'The cell is currently executing in the Kernel',
+        'The cell has been permanently deleted',
+        'The cell is a Markdown cell',
+      ],
       correctIndex: 1,
-      explanation: 'Double percent `%%time` is a cell magic that measures the wall-clock and CPU time of the entire cell contents.',
+      explanation:
+        'An asterisk In [*] indicates that the Kernel is actively computing the code in that cell.',
+    },
+    {
+      id: 'q1-6-3',
+      question: 'What happens when you select "Restart Kernel"?',
+      options: [
+        'All your code and text cells are deleted from the file',
+        'The Kernel memory is wiped clean, removing all active variables and imports from RAM',
+        'The notebook is automatically converted into a .py script',
+        'The browser tab closes permanently',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Restarting the Kernel resets the computational state to empty, exactly like wiping a laboratory whiteboard clean. Your code on screen remains intact.',
+    },
+    {
+      id: 'q1-6-4',
+      question: 'Why might a notebook cell crash with a NameError even if the variable is visibly defined in a cell above it?',
+      options: [
+        'Jupyter does not support variable sharing between cells',
+        'The cell above was never actually executed in the current Kernel session',
+        'Markdown cells disable code variables',
+        'Variable names cannot exceed 4 characters in Jupyter',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Code on the screen does not exist in memory until its cell is executed. If you open a notebook and jump straight to Cell 2 without running Cell 1, the variable does not exist in the Kernel.',
+    },
+    {
+      id: 'q1-6-5',
+      question: 'Which cell type is designed for narrative explanations, formatted headings, and bullet points?',
+      options: ['Raw NBConvert Cell', 'Code Cell', 'Markdown Cell', 'Kernel Cell'],
+      correctIndex: 2,
+      explanation:
+        'Markdown cells render rich text, headers (#), bold (**), math equations, tables, and notes.',
+    },
+    {
+      id: 'q1-6-6',
+      question: 'What does the execution counter In [7] tell you about a cell?',
+      options: [
+        'It is the 7th cell from the top of the document',
+        'It took 7 seconds to finish computing',
+        'It was the 7th cell execution performed by the active Kernel',
+        'It contains 7 lines of Python code',
+      ],
+      correctIndex: 2,
+      explanation:
+        'The execution counter tracks chronological order. If you run the same cell 3 times, its counter increments on every run.',
+    },
+    {
+      id: 'q1-6-7',
+      question: 'Why is "Restart Kernel & Run All" considered the gold standard before submitting or sharing a notebook?',
+      options: [
+        'It compresses the file size of the notebook',
+        'It verifies that the notebook executes reproducibly from top to bottom without hidden state dependencies',
+        'It converts all Markdown cells into Python code',
+        'It encrypts the notebook with a password',
+      ],
+      correctIndex: 1,
+      explanation:
+        '"Restart & Run All" ensures that another student, colleague, or automated grading system can run your entire notebook from start to finish without errors.',
+    },
+    {
+      id: 'q1-6-8',
+      question: 'If you delete a cell containing `x = 100` that was already executed, what is the value of `x` in the Kernel?',
+      options: [
+        '`None`',
+        '`x` is immediately deleted from memory',
+        '`100` remains stored in Kernel memory until the Kernel is restarted',
+        'An error is raised immediately',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Deleting a cell in the UI does NOT alter the Kernel RAM. The variable remains alive until the Kernel is restarted or overwritten.',
+    },
+    {
+      id: 'q1-6-9',
+      question: 'In Jupyter, what happens to the value of the last line of a code cell if it is an expression like `average_score`?',
+      options: [
+        'It is discarded silently unless you wrap it in print()',
+        'It is automatically displayed in the cell output area',
+        'It raises a SyntaxError',
+        'It causes the Kernel to halt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Jupyter automatically renders the value of the last evaluated expression directly into the output block below the cell.',
+    },
+    {
+      id: 'q1-6-10',
+      question: 'Which sequence reflects the standard Data Science notebook workflow?',
+      options: [
+        'Deploy Model → Delete Data → Document → Restart',
+        'Define Question → Load Data → Clean & Explore → Visualize → Document Insight',
+        'Write Charts → Write Code → Guess Question → Run All',
+        'Restart Kernel → Close Tab → Write Script → Format',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Professional data science notebooks progress logically: Question → Data Ingestion → Cleaning & EDA → Visualizations → Business Insights.',
     },
   ],
   summary: {
     takeaways: [
-      'Jupyter decouples the browser frontend from a persistent background Python Kernel.',
-      'Always test reproducibility with "Restart Kernel & Run All Cells".',
-      'Use `%timeit` to benchmark algorithmic complexity and `%whos` to inspect active memory.',
+      'Jupyter combines code, output, mathematical visualization, and narrative text in one interactive workspace.',
+      'Code cells execute Python; Markdown cells document the analytical story.',
+      'The background Kernel evaluates code and stores persistent variable state in RAM.',
+      'Notebook execution order depends on your click sequence, not visual screen placement.',
+      'Always verify reproducibility with "Kernel → Restart & Run All" before sharing.',
+      'Jupyter is the essential foundation for upcoming NumPy and Pandas data analysis!',
     ],
-    nextUpText: 'Topic 1.7: NumPy Basics & Vectorization',
+    nextUpText: 'Topic 1.7: NumPy Basics & Vectorization (Fast Numerical Computation)',
   },
   prevTopic: {
     slug: 'functions-and-modularity',

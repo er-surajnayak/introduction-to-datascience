@@ -64,8 +64,16 @@ import { ScopeVisualizer } from './interactives/ScopeVisualizer';
 import { FunctionPipelineVisualizer } from './interactives/FunctionPipelineVisualizer';
 import { DataScienceToolkitChallenge } from './interactives/DataScienceToolkitChallenge';
 
+// Topic 1.6 Interactives Suite
+import { CellTypeSorter } from './interactives/CellTypeSorter';
+import { NotebookAnatomyExplorer } from './interactives/NotebookAnatomyExplorer';
+import { ExecutionOrderLab } from './interactives/ExecutionOrderLab';
+import { KernelStateVisualizer } from './interactives/KernelStateVisualizer';
+import { JupyterSimulator } from './interactives/JupyterSimulator';
+import { ReproducibilityLab } from './interactives/ReproducibilityLab';
+import { NotebookDesignChallenge } from './interactives/NotebookDesignChallenge';
+
 // Other Topic Interactives
-import { JupyterCellRunner } from './interactives/JupyterCellRunner';
 import { NumpyVectorizationBenchmark } from './interactives/NumpyVectorizationBenchmark';
 
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
@@ -78,6 +86,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_3 = lesson.id === 'm1-t3' || lesson.slug === 'python-refresher-variables';
   const isTopic1_4 = lesson.id === 'm1-t4' || lesson.slug === 'control-structures';
   const isTopic1_5 = lesson.id === 'm1-t5' || lesson.slug === 'functions-and-modularity';
+  const isTopic1_6 = lesson.id === 'm1-t6' || lesson.slug === 'introduction-to-jupyter-notebook';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -87,10 +96,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
       case 'variable-memory':
       case 'execution-flow':
       case 'function-transformer':
+      case 'jupyter-runner':
         // For custom multi-step topics we render modular interactives in the stream
         return null;
-      case 'jupyter-runner':
-        return <JupyterCellRunner />;
       case 'numpy-benchmark':
         return <NumpyVectorizationBenchmark />;
       default:
@@ -138,6 +146,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.5 Interactive 1: Function Anatomy Explorer */}
             {isTopic1_5 && <FunctionAnatomy />}
 
+            {/* Topic 1.6 Interactive 1: Cell Type Sorter (Code vs Markdown) */}
+            {isTopic1_6 && <CellTypeSorter />}
+
             <ConceptSection
               coreConcept={lesson.coreConcept}
               technicalExplanation={lesson.technicalExplanation}
@@ -161,6 +172,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.5 Interactive 2: Parameter Slot Machine */}
             {isTopic1_5 && <ParameterSlotMachine />}
 
+            {/* Topic 1.6 Interactive 2: Notebook Anatomy Explorer */}
+            {isTopic1_6 && <NotebookAnatomyExplorer />}
+
             {/* Topic 1.1 Interactive 3: 4 Types of Questions */}
             {isTopic1_1 && <QuestionTypesExplorer />}
 
@@ -175,6 +189,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.5 Interactive 3: print() vs return Lab */}
             {isTopic1_5 && <PrintVsReturnLab />}
+
+            {/* Topic 1.6 Interactive 3: Execution Order Lab */}
+            {isTopic1_6 && <ExecutionOrderLab />}
 
             {/* Topic 1.1 Interactive 4: Real World Ecosystem */}
             {isTopic1_1 && <RealWorldShowcase />}
@@ -191,6 +208,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.5 Interactive 4: Interactive Function Builder */}
             {isTopic1_5 && <InteractiveFunctionBuilder />}
 
+            {/* Topic 1.6 Interactive 4: Kernel State Visualizer */}
+            {isTopic1_6 && <KernelStateVisualizer />}
+
             {/* Topic 1.3 Interactive 5: Python Naming Checker */}
             {isTopic1_3 && <NamingChecker />}
 
@@ -200,11 +220,17 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.5 Interactive 5: Default Parameter Playground */}
             {isTopic1_5 && <DefaultParamPlayground />}
 
+            {/* Topic 1.6 Interactive 5: Jupyter Primary Simulator */}
+            {isTopic1_6 && <JupyterSimulator />}
+
             {/* Topic 1.4 Interactive 6: While Loop Simulator */}
             {isTopic1_4 && <WhileLoopVisualizer />}
 
             {/* Topic 1.5 Interactive 6: Positional vs Keyword Argument Mapper */}
             {isTopic1_5 && <ArgumentOrderLab />}
+
+            {/* Topic 1.6 Interactive 6: Reproducibility Lab */}
+            {isTopic1_6 && <ReproducibilityLab />}
 
             {/* Topic 1.4 Interactive 7: Break vs Continue Playground */}
             {isTopic1_4 && <BreakVsContinue />}
@@ -238,6 +264,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.5 Mini Challenge: Data Science Toolkit */}
             {isTopic1_5 && <DataScienceToolkitChallenge />}
+
+            {/* Topic 1.6 Mini Challenge: Design Your First Data Science Notebook */}
+            {isTopic1_6 && <NotebookDesignChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
