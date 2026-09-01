@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'DI Notes — Introduction to Data Science (DS-201)',
   description:
     'A premium interactive digital notes platform for 2nd-year engineering students studying Introduction to Data Science. Explore Python, NumPy, Pandas, EDA, Time Series, and Linear Regression through visual computational labs.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   keywords: [
     'Data Science',
     'DI Notes',
