@@ -17,14 +17,7 @@ export function Footer() {
       }}
     >
       <div className="ds-container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '2.5rem',
-            marginBottom: '3rem',
-          }}
-        >
+        <div className="ds-responsive-footer-grid" style={{ marginBottom: '3rem' }}>
           {/* Brand & Purpose */}
           <div style={{ maxWidth: '340px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.375rem' }}>

@@ -56,13 +56,7 @@ export function QuickAccessSection() {
         </div>
 
         {/* 4 Cards Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
+        <div className="ds-responsive-quick-grid">
           {quickAccessItems.map((item) => (
             <div
               key={item.id}

@@ -88,13 +88,7 @@ export function ModuleGrid() {
         </div>
 
         {/* 5-Module Card Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '1.75rem',
-          }}
-        >
+        <div className="ds-responsive-module-grid">
           {filteredModules.map((module, idx) => (
             <ModuleCard key={module.id} module={module} index={idx} />
           ))}

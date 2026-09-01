@@ -68,14 +68,7 @@ export function DataPipelineJourney() {
         </div>
 
         {/* Interactive Pipeline Stages Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.25rem',
-            position: 'relative',
-          }}
-        >
+        <div className="ds-responsive-journey-grid">
           {learningPipelineSteps.map((step, idx) => {
             const colors = colorMap[step.phase] || colorMap.DATA;
             return (

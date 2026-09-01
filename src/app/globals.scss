@@ -19,6 +19,7 @@ body {
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -35,12 +36,12 @@ a {
 
 // Custom Scrollbar
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cds-layer-01, #12151c);
+  background: var(--cds-layer-01, #12151d);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -52,17 +53,143 @@ a {
   background: var(--cds-border-inverse, #3e4a64);
 }
 
-// Layout helper
+// Global Responsive Container
 .ds-container {
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @media (max-width: 1024px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 
   @media (max-width: 672px) {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+// Responsive Grids
+.ds-responsive-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.ds-responsive-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-responsive-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.ds-responsive-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 1120px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-lesson-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 2.5rem;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.ds-responsive-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 2.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// Tablet & Mobile Responsive Utilities
+.ds-hide-on-mobile {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.ds-hide-on-small {
+  @media (max-width: 480px) {
+    display: none !important;
+  }
+}
+
+.ds-show-on-mobile {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+.ds-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    width: 100%;
+
+    button, a {
+      width: 100% !important;
+      min-width: 100% !important;
+    }
   }
 }
 
@@ -91,6 +218,21 @@ a {
   overflow-x: auto;
   font-size: 0.875rem;
   line-height: 1.6;
+}
+
+// Touch Target Optimization
+button, [role="button"], a {
+  touch-action: manipulation;
+}
+
+// Carbon Header Mobile SideNav Overrides
+.cds--side-nav {
+  background-color: var(--ds-bg-core) !important;
+  border-right: 1px solid var(--ds-border-subtle) !important;
+}
+
+.cds--side-nav__link-text {
+  color: var(--ds-text-primary) !important;
 }
 
 // Animations & Motion Utilities

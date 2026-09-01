@@ -81,14 +81,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
         </div>
 
         {/* 2-Column Layout: Sidebar + Lesson Body */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) 300px',
-            gap: '2.5rem',
-            alignItems: 'start',
-          }}
-        >
+        <div className="ds-lesson-layout-grid">
           {/* Main Lesson Content Stream */}
           <div style={{ minWidth: 0 }}>
             <LessonHero lesson={lesson} />

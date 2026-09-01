@@ -19,12 +19,8 @@ import {
   ProgressBar,
 } from '@carbon/react';
 import {
-  ChartLine,
-  Notification,
   Help,
   DataRefinery,
-  Locked,
-  CheckmarkOutline,
 } from '@carbon/icons-react';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 import { ThemeToggle } from './ThemeToggle';
@@ -64,6 +60,7 @@ export function Navbar() {
               DATA SCIENCE
             </span>
             <span
+              className="ds-hide-on-small"
               style={{
                 marginLeft: '8px',
                 fontSize: '0.6875rem',
@@ -131,26 +128,27 @@ export function Navbar() {
         </HeaderNavigation>
 
         <HeaderGlobalBar>
-          {/* Progress Pill */}
+          {/* Progress Pill (Visible on tablet & desktop, hidden on compact phones) */}
           <div
+            className="cds--header__global-item ds-hide-on-mobile"
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
               padding: '4px 12px',
-              background: 'rgba(255, 255, 255, 0.05)',
+              background: 'var(--ds-bg-surface-elevated)',
               border: '1px solid var(--ds-border-subtle)',
               marginRight: '8px',
               fontSize: '0.8125rem',
+              borderRadius: '2px',
             }}
-            className="cds--header__global-item"
             title={`Course Progress: ${completedCount} of ${totalCount} Modules completed`}
           >
             <DataRefinery size={16} style={{ color: 'var(--ds-cyan)' }} />
             <span style={{ fontFamily: 'var(--ds-font-mono)', fontSize: '0.75rem', color: 'var(--ds-text-secondary)' }}>
               {completedCount}/{totalCount} DONE
             </span>
-            <div style={{ width: '60px' }}>
+            <div style={{ width: '50px' }}>
               <ProgressBar
                 value={overallProgress}
                 max={100}
@@ -178,7 +176,7 @@ export function Navbar() {
           </HeaderGlobalAction>
         </HeaderGlobalBar>
 
-        {/* Mobile SideNav */}
+        {/* Mobile SideNav Drawer */}
         <SideNav
           aria-label="Side navigation"
           expanded={isSideNavExpanded}
@@ -186,6 +184,20 @@ export function Navbar() {
           onOverlayClick={() => setIsSideNavExpanded(false)}
         >
           <SideNavItems>
+            <div style={{ padding: '1rem', borderBottom: '1px solid var(--ds-border-subtle)' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--ds-cyan)', fontFamily: 'var(--ds-font-mono)', marginBottom: '4px' }}>
+                COURSE PROGRESS: {completedCount}/{totalCount}
+              </div>
+              <ProgressBar
+                value={overallProgress}
+                max={100}
+                size="small"
+                hideLabel
+                label="Progress"
+                status={overallProgress === 100 ? 'finished' : 'active'}
+              />
+            </div>
+
             <Link href="/" passHref legacyBehavior>
               <SideNavLink
                 isActive={pathname === '/'}
@@ -210,19 +222,19 @@ export function Navbar() {
               href="#quick-access"
               onClick={() => {
                 setIsSideNavExpanded(false);
-                handleOpenUnavailable('Question Bank', 'Coming soon in Phase 2.');
+                handleOpenUnavailable('Question Bank', 'Unlocking in Phase 2.');
               }}
             >
-              Question Bank [Soon]
+              Question Bank
             </SideNavLink>
             <SideNavLink
               href="#quick-access"
               onClick={() => {
                 setIsSideNavExpanded(false);
-                handleOpenUnavailable('Quiz Arena', 'Coming soon in Phase 2.');
+                handleOpenUnavailable('Quiz Arena', 'Unlocking in Phase 2.');
               }}
             >
-              Quiz Arena [Soon]
+              Quiz Arena
             </SideNavLink>
             <SideNavLink
               href="#quick-access"

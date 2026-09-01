@@ -19,12 +19,12 @@ export function HeroSection() {
     <section
       style={{
         position: 'relative',
-        minHeight: '82vh',
+        minHeight: '80vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '5rem',
-        paddingBottom: '4rem',
+        paddingTop: '4.5rem',
+        paddingBottom: '3.5rem',
         overflow: 'hidden',
         borderBottom: '1px solid var(--ds-border-subtle)',
       }}
@@ -40,7 +40,7 @@ export function HeroSection() {
           top: '30%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '650px',
+          width: 'min(90vw, 650px)',
           height: '380px',
           background: 'var(--ds-hero-radial)',
           pointerEvents: 'none',
@@ -60,15 +60,17 @@ export function HeroSection() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '4px 14px',
+              gap: '6px',
+              padding: '4px 12px',
               background: 'var(--ds-bg-surface)',
               border: '1px solid var(--ds-border-subtle)',
               borderRadius: '999px',
-              marginBottom: '1.75rem',
-              fontSize: '0.8125rem',
+              marginBottom: '1.5rem',
+              fontSize: '0.75rem',
               color: 'var(--ds-text-secondary)',
               boxShadow: 'var(--ds-card-shadow)',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
             }}
           >
             <span
@@ -77,9 +79,9 @@ export function HeroSection() {
                 fontWeight: 600,
                 color: 'var(--ds-cyan)',
                 background: 'var(--ds-cyan-dim)',
-                padding: '2px 8px',
+                padding: '2px 6px',
                 borderRadius: '999px',
-                fontSize: '0.75rem',
+                fontSize: '0.6875rem',
               }}
             >
               DS-201
@@ -107,9 +109,9 @@ export function HeroSection() {
           {/* Primary Heading */}
           <h1
             style={{
-              fontSize: 'clamp(2.5rem, 5.5vw, 4.25rem)',
+              fontSize: 'clamp(2.125rem, 5.5vw, 4.25rem)',
               fontWeight: 700,
-              lineHeight: 1.12,
+              lineHeight: 1.15,
               letterSpacing: '-0.025em',
               margin: '0 0 1.25rem 0',
               color: 'var(--ds-text-primary)',
@@ -133,14 +135,14 @@ export function HeroSection() {
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '10px',
-              padding: '6px 16px',
+              gap: '8px',
+              padding: '6px 14px',
               background: 'var(--ds-bg-surface)',
               border: '1px solid var(--ds-border-subtle)',
               borderRadius: '4px',
               marginBottom: '1.5rem',
               fontFamily: 'var(--ds-font-mono)',
-              fontSize: '0.8125rem',
+              fontSize: '0.75rem',
               color: 'var(--ds-text-secondary)',
               flexWrap: 'wrap',
             }}
@@ -159,27 +161,18 @@ export function HeroSection() {
           {/* Philosophy Subtitle */}
           <p
             style={{
-              fontSize: 'clamp(1rem, 1.8vw, 1.1875rem)',
+              fontSize: 'clamp(0.9375rem, 1.8vw, 1.1875rem)',
               lineHeight: 1.6,
               color: 'var(--ds-text-secondary)',
               maxWidth: '720px',
-              margin: '0 auto 2.25rem auto',
+              margin: '0 auto 2rem auto',
             }}
           >
             A hands-on computational laboratory. Transform raw telemetry into clean datasets, statistical distributions, time trends, and predictive models.
           </p>
 
           {/* CTA Buttons */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1rem',
-              flexWrap: 'wrap',
-              marginBottom: '3.5rem',
-            }}
-          >
+          <div className="ds-cta-group" style={{ marginBottom: '3rem' }}>
             <Link href="/modules/module-1" passHref legacyBehavior>
               <Button
                 renderIcon={ArrowRight}
@@ -211,52 +204,105 @@ export function HeroSection() {
           </div>
 
           {/* 4 Feature Highlights Grid */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1rem',
-              textAlign: 'left',
-            }}
-          >
+          <div className="ds-responsive-feature-grid" style={{ textAlign: 'left' }}>
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1.125rem 1.25rem',
+                padding: '1rem 1.125rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
                 borderRadius: '4px',
               }}
             >
-              <DataStructured size={24} style={{ color: 'var(--ds-cyan)', flexShrink: 0 }} />
+              <div
+                style={{
+                  padding: '8px',
+                  background: 'var(--ds-cyan-dim)',
+                  color: 'var(--ds-cyan)',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <DataStructured size={20} />
+              </div>
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
-                  Curriculum
+                <div style={{ fontWeight: 600, color: 'var(--ds-text-primary)', fontSize: '0.875rem' }}>
+                  Interactive Notes
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-secondary)', lineHeight: 1.3 }}>
+                  Live visual computational tools
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="ds-glass-panel"
+              style={{
+                padding: '1rem 1.125rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                borderRadius: '4px',
+              }}
+            >
+              <div
+                style={{
+                  padding: '8px',
+                  background: 'var(--ds-teal-dim)',
+                  color: 'var(--ds-teal)',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <Code size={20} />
+              </div>
+              <div>
+                <div style={{ fontWeight: 600, color: 'var(--ds-text-primary)', fontSize: '0.875rem' }}>
+                  Executable Python
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-secondary)', lineHeight: 1.3 }}>
+                  Production NumPy & Pandas snippets
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="ds-glass-panel"
+              style={{
+                padding: '1rem 1.125rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                borderRadius: '4px',
+              }}
+            >
+              <div
+                style={{
+                  padding: '8px',
+                  background: 'var(--ds-purple-dim)',
+                  color: 'var(--ds-purple)',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <Analytics size={20} />
+              </div>
+              <div>
+                <div style={{ fontWeight: 600, color: 'var(--ds-text-primary)', fontSize: '0.875rem' }}>
                   5 Core Modules
                 </div>
-              </div>
-            </div>
-
-            <div
-              className="ds-glass-panel"
-              style={{
-                padding: '1.125rem 1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                borderRadius: '4px',
-              }}
-            >
-              <Code size={24} style={{ color: 'var(--ds-teal)', flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
-                  Hands-On
-                </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
-                  Python & NumPy
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-secondary)', lineHeight: 1.3 }}>
+                  Complete university syllabus
                 </div>
               </div>
             </div>
@@ -264,41 +310,33 @@ export function HeroSection() {
             <div
               className="ds-glass-panel"
               style={{
-                padding: '1.125rem 1.25rem',
+                padding: '1rem 1.125rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
                 borderRadius: '4px',
               }}
             >
-              <Analytics size={24} style={{ color: 'var(--ds-purple)', flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
-                  Progression
-                </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
-                  Data-Driven Unlocking
-                </div>
+              <div
+                style={{
+                  padding: '8px',
+                  background: 'var(--ds-emerald-dim)',
+                  color: 'var(--ds-emerald)',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <Chemistry size={20} />
               </div>
-            </div>
-
-            <div
-              className="ds-glass-panel"
-              style={{
-                padding: '1.125rem 1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                borderRadius: '4px',
-              }}
-            >
-              <Chemistry size={24} style={{ color: 'var(--ds-amber)', flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
-                  Experience
+                <div style={{ fontWeight: 600, color: 'var(--ds-text-primary)', fontSize: '0.875rem' }}>
+                  Lab & Intuition
                 </div>
-                <div style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--ds-text-primary)' }}>
-                  Zero Fluff Laboratory
+                <div style={{ fontSize: '0.75rem', color: 'var(--ds-text-secondary)', lineHeight: 1.3 }}>
+                  Mathematical rigor made intuitive
                 </div>
               </div>
             </div>
