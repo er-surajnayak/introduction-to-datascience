@@ -73,7 +73,15 @@ import { JupyterSimulator } from './interactives/JupyterSimulator';
 import { ReproducibilityLab } from './interactives/ReproducibilityLab';
 import { NotebookDesignChallenge } from './interactives/NotebookDesignChallenge';
 
-// Other Topic Interactives
+// Topic 1.7 Interactives Suite
+import { ArrayBuilder } from './interactives/ArrayBuilder';
+import { ArrayFactory } from './interactives/ArrayFactory';
+import { IndexingSlicingLab } from './interactives/IndexingSlicingLab';
+import { VectorMathLab } from './interactives/VectorMathLab';
+import { AxisVisualizer } from './interactives/AxisVisualizer';
+import { ReshapeLab } from './interactives/ReshapeLab';
+import { NumpyPlayground } from './interactives/NumpyPlayground';
+import { Module1FinalChallenge } from './interactives/Module1FinalChallenge';
 import { NumpyVectorizationBenchmark } from './interactives/NumpyVectorizationBenchmark';
 
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
@@ -87,6 +95,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_4 = lesson.id === 'm1-t4' || lesson.slug === 'control-structures';
   const isTopic1_5 = lesson.id === 'm1-t5' || lesson.slug === 'functions-and-modularity';
   const isTopic1_6 = lesson.id === 'm1-t6' || lesson.slug === 'introduction-to-jupyter-notebook';
+  const isTopic1_7 = lesson.id === 'm1-t7' || lesson.slug === 'numpy-basics-and-vectorization';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -97,10 +106,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
       case 'execution-flow':
       case 'function-transformer':
       case 'jupyter-runner':
+      case 'numpy-benchmark':
         // For custom multi-step topics we render modular interactives in the stream
         return null;
-      case 'numpy-benchmark':
-        return <NumpyVectorizationBenchmark />;
       default:
         return null;
     }
@@ -149,6 +157,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.6 Interactive 1: Cell Type Sorter (Code vs Markdown) */}
             {isTopic1_6 && <CellTypeSorter />}
 
+            {/* Topic 1.7 Interactive 1: Array Builder (1D vs 2D ndarray) */}
+            {isTopic1_7 && <ArrayBuilder />}
+
             <ConceptSection
               coreConcept={lesson.coreConcept}
               technicalExplanation={lesson.technicalExplanation}
@@ -175,6 +186,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.6 Interactive 2: Notebook Anatomy Explorer */}
             {isTopic1_6 && <NotebookAnatomyExplorer />}
 
+            {/* Topic 1.7 Interactive 2: Array Creation Factory */}
+            {isTopic1_7 && <ArrayFactory />}
+
             {/* Topic 1.1 Interactive 3: 4 Types of Questions */}
             {isTopic1_1 && <QuestionTypesExplorer />}
 
@@ -192,6 +206,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.6 Interactive 3: Execution Order Lab */}
             {isTopic1_6 && <ExecutionOrderLab />}
+
+            {/* Topic 1.7 Interactive 3: Indexing & Slicing Explorer */}
+            {isTopic1_7 && <IndexingSlicingLab />}
 
             {/* Topic 1.1 Interactive 4: Real World Ecosystem */}
             {isTopic1_1 && <RealWorldShowcase />}
@@ -211,6 +228,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.6 Interactive 4: Kernel State Visualizer */}
             {isTopic1_6 && <KernelStateVisualizer />}
 
+            {/* Topic 1.7 Interactive 4: Vectorized Math & Broadcasting */}
+            {isTopic1_7 && <VectorMathLab />}
+
             {/* Topic 1.3 Interactive 5: Python Naming Checker */}
             {isTopic1_3 && <NamingChecker />}
 
@@ -223,6 +243,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.6 Interactive 5: Jupyter Primary Simulator */}
             {isTopic1_6 && <JupyterSimulator />}
 
+            {/* Topic 1.7 Interactive 5: Understanding Axis (0 vs 1) */}
+            {isTopic1_7 && <AxisVisualizer />}
+
             {/* Topic 1.4 Interactive 6: While Loop Simulator */}
             {isTopic1_4 && <WhileLoopVisualizer />}
 
@@ -232,11 +255,17 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.6 Interactive 6: Reproducibility Lab */}
             {isTopic1_6 && <ReproducibilityLab />}
 
+            {/* Topic 1.7 Interactive 6: Reshape Lab */}
+            {isTopic1_7 && <ReshapeLab />}
+
             {/* Topic 1.4 Interactive 7: Break vs Continue Playground */}
             {isTopic1_4 && <BreakVsContinue />}
 
             {/* Topic 1.5 Interactive 7: Scope Visualizer */}
             {isTopic1_5 && <ScopeVisualizer />}
+
+            {/* Topic 1.7 Interactive 7: Vectorization Speed Benchmark */}
+            {isTopic1_7 && <NumpyVectorizationBenchmark />}
 
             {/* Code Examples Playground */}
             <CodePlayground examples={lesson.codeExamples} />
@@ -256,6 +285,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.5 Interactive 8: Function Composition Pipeline */}
             {isTopic1_5 && <FunctionPipelineVisualizer />}
 
+            {/* Topic 1.7 Interactive 8: Consolidated NumPy Playground */}
+            {isTopic1_7 && <NumpyPlayground />}
+
             {/* Topic 1.3 Mini Challenge: Build a Student Profile */}
             {isTopic1_3 && <StudentProfileBuilder />}
 
@@ -267,6 +299,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 1.6 Mini Challenge: Design Your First Data Science Notebook */}
             {isTopic1_6 && <NotebookDesignChallenge />}
+
+            {/* Topic 1.7 Mini Challenge: Analyze a Class (Module 1 Final Capstone) */}
+            {isTopic1_7 && <Module1FinalChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
