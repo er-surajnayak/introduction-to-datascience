@@ -433,7 +433,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
                             flexShrink: 0,
                           }}
                         >
-                          0{idx + 1}
+                          {top.topicNumber}
                         </span>
                         <span
                           style={{
