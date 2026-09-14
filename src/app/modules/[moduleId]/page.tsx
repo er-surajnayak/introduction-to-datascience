@@ -273,7 +273,7 @@ export default function ModuleDetailPage() {
                         renderIcon={PlayFilledAlt}
                         style={{ backgroundColor: '#0f62fe' }}
                       >
-                        {currentProgress > 0 ? 'Resume Lessons' : 'Start Topic 1.1'}
+                        {currentProgress > 0 ? 'Resume Lessons' : `Start Topic ${moduleItem.moduleNumber}.1`}
                       </Button>
                     </Link>
                   )}
