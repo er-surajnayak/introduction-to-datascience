@@ -25,12 +25,11 @@ export const defaultProgressState: StoredProgress = {
 
 export function isModuleUnlocked(
   module: ModuleItem,
-  completedModules: string[]
+  completedModules: string[] = []
 ): boolean {
-  if (!module.unlockCondition) {
-    return true; // First module or no condition
-  }
-  return completedModules.includes(module.unlockCondition);
+  // Modules are unlocked if their content is uploaded and available (status !== 'locked').
+  // Modules are never blocked solely because previous modules are not completed.
+  return module.status !== 'locked';
 }
 
 export function computeModuleStatus(
@@ -41,8 +40,7 @@ export function computeModuleStatus(
   if (completedModules.includes(module.id)) {
     return 'completed';
   }
-  const unlocked = isModuleUnlocked(module, completedModules);
-  if (!unlocked) {
+  if (module.status === 'locked') {
     return 'locked';
   }
   if (progress > 0) {

@@ -103,7 +103,7 @@ export default function ModuleDetailPage() {
             </div>
 
             <Tag type="cool-gray" size="md" style={{ marginBottom: '1rem' }}>
-              Module Locked
+              Content in Preparation
             </Tag>
 
             <h1 style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--ds-text-primary)', margin: '0 0 1rem 0' }}>
@@ -111,11 +111,7 @@ export default function ModuleDetailPage() {
             </h1>
 
             <p style={{ color: 'var(--ds-text-secondary)', lineHeight: 1.6, marginBottom: '2rem' }}>
-              This module requires foundational concepts from earlier in the curriculum. Complete{' '}
-              <strong style={{ color: 'var(--ds-text-primary)' }}>
-                {moduleItem.prerequisites?.join(' & ') || 'the previous module'}
-              </strong>{' '}
-              to unlock this interactive laboratory.
+              The lessons, notebooks, and interactive laboratories for this module are currently in development. This module will unlock automatically as soon as its content is uploaded.
             </p>
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
@@ -124,9 +120,9 @@ export default function ModuleDetailPage() {
                   Return to Dashboard
                 </Button>
               </Link>
-              <Link href="/modules/module-1" passHref legacyBehavior>
+              <Link href="/modules/module-2" passHref legacyBehavior>
                 <Button kind="primary" renderIcon={ArrowRight}>
-                  Go to Module 1
+                  Explore Module 2
                 </Button>
               </Link>
             </div>

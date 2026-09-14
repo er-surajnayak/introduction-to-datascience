@@ -45,7 +45,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
         return (
           <Tag type="cool-gray" size="md">
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              <Locked size={12} /> Locked
+              <Locked size={12} /> Coming Soon
             </span>
           </Tag>
         );
@@ -354,7 +354,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
                 borderColor: '#393939',
               }}
             >
-              Locked (Complete Module {module.moduleNumber - 1})
+              Coming Soon (Content In Preparation)
             </Button>
           )}
         </div>

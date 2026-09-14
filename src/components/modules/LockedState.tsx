@@ -26,9 +26,7 @@ export function LockedState({ prerequisites, unlockConditionText }: LockedStateP
       <Locked size={16} style={{ color: 'var(--ds-text-muted)', flexShrink: 0 }} />
       <span>
         {unlockConditionText ||
-          (prerequisites && prerequisites.length > 0
-            ? `Prerequisite: Complete ${prerequisites.join(', ')}`
-            : 'Unlocks sequentially after previous module completion.')}
+          'Content in preparation. This module will unlock as soon as its lessons and interactive laboratories are uploaded.'}
       </span>
     </div>
   );

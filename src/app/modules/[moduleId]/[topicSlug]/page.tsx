@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@carbon/react';
-import { ArrowLeft, Locked, CheckmarkFilled } from '@carbon/icons-react';
+import { ArrowLeft, ArrowRight, Locked } from '@carbon/icons-react';
 import { getModule1Lesson } from '@/data/lessons/module1';
 import { getModule2Lesson } from '@/data/lessons/module2';
 import { LessonLayout } from '@/components/lessons/LessonLayout';
@@ -44,22 +44,16 @@ export default function TopicPage() {
         >
           <Locked size={32} />
         </div>
-        <h1 style={{ color: 'var(--ds-text-primary)', marginBottom: '1rem' }}>Module Locked</h1>
+        <h1 style={{ color: 'var(--ds-text-primary)', marginBottom: '1rem' }}>Content in Preparation</h1>
         <p style={{ color: 'var(--ds-text-secondary)', marginBottom: '2rem', maxWidth: '520px', margin: '0 auto 2rem auto' }}>
-          This topic belongs to a locked module. Complete prerequisite modules first to unlock, or unlock directly to test this topic.
+          The lessons and interactive laboratories for this module are currently being developed and will unlock as soon as the content is uploaded.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {moduleId === 'module-2' && (
-            <Button
-              kind="secondary"
-              renderIcon={CheckmarkFilled}
-              onClick={() => completeModule('module-1')}
-            >
-              Unlock Module 2 (Complete Prerequisite)
-            </Button>
-          )}
+          <Link href="/modules/module-2" passHref legacyBehavior>
+            <Button kind="primary" renderIcon={ArrowRight}>Explore Module 2</Button>
+          </Link>
           <Link href="/" passHref legacyBehavior>
-            <Button renderIcon={ArrowLeft}>Return to Dashboard</Button>
+            <Button kind="secondary" renderIcon={ArrowLeft}>Return to Dashboard</Button>
           </Link>
         </div>
       </div>
