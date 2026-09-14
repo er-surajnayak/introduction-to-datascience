@@ -7,6 +7,7 @@ import { Breadcrumb, BreadcrumbItem, Tag, ProgressBar } from '@carbon/react';
 import { CheckmarkFilled, Locked, PlayFilledAlt, Time, Catalog } from '@carbon/icons-react';
 import { LessonContent } from '@/types/lesson';
 import { module1LessonList } from '@/data/lessons/module1';
+import { module2LessonList } from '@/data/lessons/module2';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 
 import { LessonHero } from './LessonHero';
@@ -84,10 +85,20 @@ import { NumpyPlayground } from './interactives/NumpyPlayground';
 import { Module1FinalChallenge } from './interactives/Module1FinalChallenge';
 import { NumpyVectorizationBenchmark } from './interactives/NumpyVectorizationBenchmark';
 
+// Topic 2.1 Interactives Suite
+import { ApiRestaurantAnalogy } from './interactives/ApiRestaurantAnalogy';
+import { ApiRequestBuilder } from './interactives/ApiRequestBuilder';
+import { JsonExplorer } from './interactives/JsonExplorer';
+import { HttpStatusDetective } from './interactives/HttpStatusDetective';
+import { BatchVsStreamingVisualizer } from './interactives/BatchVsStreamingVisualizer';
+import { DataStreamSimulator } from './interactives/DataStreamSimulator';
+import { ApiVsScrapingMatrix } from './interactives/ApiVsScrapingMatrix';
+import { ApiDetectiveChallenge } from './interactives/ApiDetectiveChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
-  const module1 = modules.find((m) => m.id === 'module-1');
+  const activeModule = modules.find((m) => m.id === lesson.moduleId);
 
   const isTopic1_1 = lesson.id === 'm1-t1' || lesson.slug === 'data-science-introduction';
   const isTopic1_2 = lesson.id === 'm1-t2' || lesson.slug === 'roles-and-tools-in-data-science';
@@ -96,6 +107,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_5 = lesson.id === 'm1-t5' || lesson.slug === 'functions-and-modularity';
   const isTopic1_6 = lesson.id === 'm1-t6' || lesson.slug === 'introduction-to-jupyter-notebook';
   const isTopic1_7 = lesson.id === 'm1-t7' || lesson.slug === 'numpy-basics-and-vectorization';
+  const isTopic2_1 = lesson.id === 'm2-t1' || lesson.slug === 'apis-and-data-streams';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -124,7 +136,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
               <Link href="/">Dashboard</Link>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <Link href="/modules/module-1">Module 1: Introduction</Link>
+              <Link href={`/modules/${lesson.moduleId}`}>
+                {lesson.moduleId === 'module-2'
+                  ? 'Module 2: Data Collection'
+                  : 'Module 1: Introduction'}
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
               Topic {lesson.topicNumber}
@@ -138,6 +154,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
           <div style={{ minWidth: 0 }}>
             <LessonHero lesson={lesson} />
             <StorySection hook={lesson.hook} />
+
+            {/* Topic 2.1 Interactive 1: The Restaurant Analogy */}
+            {isTopic2_1 && <ApiRestaurantAnalogy />}
 
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
@@ -167,6 +186,14 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Default Interactive Block */}
             {renderInteractiveBlock()}
+
+            {/* Topic 2.1 Interactives Suite */}
+            {isTopic2_1 && <ApiRequestBuilder />}
+            {isTopic2_1 && <JsonExplorer />}
+            {isTopic2_1 && <HttpStatusDetective />}
+            {isTopic2_1 && <BatchVsStreamingVisualizer />}
+            {isTopic2_1 && <DataStreamSimulator />}
+            {isTopic2_1 && <ApiVsScrapingMatrix />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -303,6 +330,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 1.7 Mini Challenge: Analyze a Class (Module 1 Final Capstone) */}
             {isTopic1_7 && <Module1FinalChallenge />}
 
+            {/* Topic 2.1 Capstone Challenge */}
+            {isTopic2_1 && <ApiDetectiveChallenge />}
+
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
             <InteractiveQuiz questions={lesson.quiz} />
@@ -330,18 +360,18 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
                 <span style={{ fontSize: '0.75rem', fontFamily: 'var(--ds-font-mono)', color: 'var(--ds-cyan)', textTransform: 'uppercase' }}>
-                  Module 1 Progress
+                  {lesson.moduleId === 'module-2' ? 'Module 2 Progress' : 'Module 1 Progress'}
                 </span>
                 <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ds-text-primary)' }}>
-                  {module1?.progress || 0}%
+                  {activeModule?.progress || 0}%
                 </span>
               </div>
               <ProgressBar
-                value={module1?.progress || 0}
+                value={activeModule?.progress || 0}
                 max={100}
                 size="small"
                 hideLabel
-                label="Module 1"
+                label={lesson.moduleId === 'module-2' ? 'Module 2' : 'Module 1'}
               />
             </div>
 
@@ -367,18 +397,22 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
                 }}
               >
                 <Catalog size={16} style={{ color: 'var(--ds-cyan)' }} />
-                <span>Module 1 Topics (7)</span>
+                <span>
+                  {lesson.moduleId === 'module-2'
+                    ? `Module 2 Topics (${module2LessonList.length})`
+                    : `Module 1 Topics (${module1LessonList.length})`}
+                </span>
               </div>
 
               <div style={{ padding: '0.5rem 0' }}>
-                {module1LessonList.map((top, idx) => {
+                {(lesson.moduleId === 'module-2' ? module2LessonList : module1LessonList).map((top, idx) => {
                   const isCurrent = top.slug === lesson.slug;
                   const isDone = isTopicCompleted(top.id);
 
                   return (
                     <Link
                       key={top.id}
-                      href={`/modules/module-1/${top.slug}`}
+                      href={`/modules/${lesson.moduleId}/${top.slug}`}
                       style={{
                         display: 'flex',
                         alignItems: 'center',

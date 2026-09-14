@@ -5,7 +5,8 @@ export type InteractiveType =
   | 'execution-flow'
   | 'function-transformer'
   | 'jupyter-runner'
-  | 'numpy-benchmark';
+  | 'numpy-benchmark'
+  | 'api-lab';
 
 export interface CodeExample {
   title: string;
