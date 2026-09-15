@@ -95,6 +95,20 @@ import { DataStreamSimulator } from './interactives/DataStreamSimulator';
 import { ApiVsScrapingMatrix } from './interactives/ApiVsScrapingMatrix';
 import { ApiDetectiveChallenge } from './interactives/ApiDetectiveChallenge';
 
+// Topic 2.2 Interactives Suite
+import { WebScrapingPipeline } from './interactives/WebScrapingPipeline';
+import { HtmlVsRenderedVisualizer } from './interactives/HtmlVsRenderedVisualizer';
+import { DomTreeExplorer } from './interactives/DomTreeExplorer';
+import { ElementSelectorLab } from './interactives/ElementSelectorLab';
+import { FindVsFindAllVisualizer } from './interactives/FindVsFindAllVisualizer';
+import { TextVsAttributeExtractor } from './interactives/TextVsAttributeExtractor';
+import { HtmlTableToDataframeVisualizer } from './interactives/HtmlTableToDataframeVisualizer';
+import { StaticVsDynamicVisualizer } from './interactives/StaticVsDynamicVisualizer';
+import { WebpageAnatomyExplorer } from './interactives/WebpageAnatomyExplorer';
+import { WebScrapingSimulator } from './interactives/WebScrapingSimulator';
+import { ResponsibleScrapingGuide } from './interactives/ResponsibleScrapingGuide';
+import { WebDetectiveChallenge } from './interactives/WebDetectiveChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -108,6 +122,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_6 = lesson.id === 'm1-t6' || lesson.slug === 'introduction-to-jupyter-notebook';
   const isTopic1_7 = lesson.id === 'm1-t7' || lesson.slug === 'numpy-basics-and-vectorization';
   const isTopic2_1 = lesson.id === 'm2-t1' || lesson.slug === 'apis-and-data-streams';
+  const isTopic2_2 = lesson.id === 'm2-t2' || lesson.slug === 'web-scraping-and-parsing';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -158,6 +173,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 2.1 Interactive 1: The Restaurant Analogy */}
             {isTopic2_1 && <ApiRestaurantAnalogy />}
 
+            {/* Topic 2.2 Interactive 1: HTML vs What You See */}
+            {isTopic2_2 && <HtmlVsRenderedVisualizer />}
+
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
 
@@ -194,6 +212,18 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_1 && <BatchVsStreamingVisualizer />}
             {isTopic2_1 && <DataStreamSimulator />}
             {isTopic2_1 && <ApiVsScrapingMatrix />}
+
+            {/* Topic 2.2 Interactives Suite */}
+            {isTopic2_2 && <WebScrapingPipeline />}
+            {isTopic2_2 && <DomTreeExplorer />}
+            {isTopic2_2 && <ElementSelectorLab />}
+            {isTopic2_2 && <FindVsFindAllVisualizer />}
+            {isTopic2_2 && <TextVsAttributeExtractor />}
+            {isTopic2_2 && <HtmlTableToDataframeVisualizer />}
+            {isTopic2_2 && <StaticVsDynamicVisualizer />}
+            {isTopic2_2 && <WebpageAnatomyExplorer />}
+            {isTopic2_2 && <WebScrapingSimulator />}
+            {isTopic2_2 && <ResponsibleScrapingGuide />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -332,6 +362,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.1 Capstone Challenge */}
             {isTopic2_1 && <ApiDetectiveChallenge />}
+
+            {/* Topic 2.2 Capstone Challenge */}
+            {isTopic2_2 && <WebDetectiveChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
