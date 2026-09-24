@@ -9,7 +9,8 @@ export type InteractiveType =
   | 'api-lab'
   | 'scraping-lab'
   | 'datatype-lab'
-  | 'imputation-lab';
+  | 'imputation-lab'
+  | 'outlier-lab';
 
 export interface CodeExample {
   title: string;

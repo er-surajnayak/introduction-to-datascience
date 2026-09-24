@@ -136,6 +136,20 @@ import { ObservedVsImputedVisualizer } from './interactives/ObservedVsImputedVis
 import { StudentPerformanceCaseStudy } from './interactives/StudentPerformanceCaseStudy';
 import { MissingDataChallenge } from './interactives/MissingDataChallenge';
 
+// Topic 2.5 Interactives Suite
+import { OutlierDetective } from './interactives/OutlierDetective';
+import { OutlierVsErrorLab } from './interactives/OutlierVsErrorLab';
+import { FiveNumberAndBoxPlotVisualizer } from './interactives/FiveNumberAndBoxPlotVisualizer';
+import { IqrRuleVisualizer } from './interactives/IqrRuleVisualizer';
+import { ZScoreVsIqrExplorer } from './interactives/ZScoreVsIqrExplorer';
+import { OutlierPlayground } from './interactives/OutlierPlayground';
+import { OutlierTreatmentSimulator } from './interactives/OutlierTreatmentSimulator';
+import { SignalVsNoiseScenarios } from './interactives/SignalVsNoiseScenarios';
+import { MultivariateOutlierLab } from './interactives/MultivariateOutlierLab';
+import { OutlierInvestigationChecklist } from './interactives/OutlierInvestigationChecklist';
+import { ECommerceCaseStudy } from './interactives/ECommerceCaseStudy';
+import { OutlierDetectionChallenge } from './interactives/OutlierDetectionChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -152,6 +166,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_2 = lesson.id === 'm2-t2' || lesson.slug === 'web-scraping-and-parsing';
   const isTopic2_3 = lesson.id === 'm2-t3' || lesson.slug === 'data-types-and-sources';
   const isTopic2_4 = lesson.id === 'm2-t4' || lesson.slug === 'missing-data-imputation';
+  const isTopic2_5 = lesson.id === 'm2-t5' || lesson.slug === 'outliers-detection-and-treatment';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -210,6 +225,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.4 Interactive 1: Zero vs Missing Lab */}
             {isTopic2_4 && <ZeroVsMissingLab />}
+
+            {/* Topic 2.5 Interactive 1: Outlier Detective */}
+            {isTopic2_5 && <OutlierDetective />}
 
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
@@ -282,6 +300,18 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_4 && <ImputationStrategyDecisionTree />}
             {isTopic2_4 && <ObservedVsImputedVisualizer />}
             {isTopic2_4 && <StudentPerformanceCaseStudy />}
+
+            {/* Topic 2.5 Interactives Suite */}
+            {isTopic2_5 && <OutlierVsErrorLab />}
+            {isTopic2_5 && <FiveNumberAndBoxPlotVisualizer />}
+            {isTopic2_5 && <IqrRuleVisualizer />}
+            {isTopic2_5 && <ZScoreVsIqrExplorer />}
+            {isTopic2_5 && <OutlierPlayground />}
+            {isTopic2_5 && <OutlierTreatmentSimulator />}
+            {isTopic2_5 && <SignalVsNoiseScenarios />}
+            {isTopic2_5 && <MultivariateOutlierLab />}
+            {isTopic2_5 && <OutlierInvestigationChecklist />}
+            {isTopic2_5 && <ECommerceCaseStudy />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -429,6 +459,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.4 Capstone Challenge */}
             {isTopic2_4 && <MissingDataChallenge />}
+
+            {/* Topic 2.5 Capstone Challenge */}
+            {isTopic2_5 && <OutlierDetectionChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
