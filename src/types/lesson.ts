@@ -7,7 +7,8 @@ export type InteractiveType =
   | 'jupyter-runner'
   | 'numpy-benchmark'
   | 'api-lab'
-  | 'scraping-lab';
+  | 'scraping-lab'
+  | 'datatype-lab';
 
 export interface CodeExample {
   title: string;

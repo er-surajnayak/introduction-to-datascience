@@ -109,6 +109,21 @@ import { WebScrapingSimulator } from './interactives/WebScrapingSimulator';
 import { ResponsibleScrapingGuide } from './interactives/ResponsibleScrapingGuide';
 import { WebDetectiveChallenge } from './interactives/WebDetectiveChallenge';
 
+// Topic 2.3 Interactives Suite
+import { DataTypeEverywhereExplorer } from './interactives/DataTypeEverywhereExplorer';
+import { DiscreteVsContinuousLab } from './interactives/DiscreteVsContinuousLab';
+import { NominalVsOrdinalLab } from './interactives/NominalVsOrdinalLab';
+import { DataTypeDetective } from './interactives/DataTypeDetective';
+import { DataSourceHierarchyMap } from './interactives/DataSourceHierarchyMap';
+import { StructureDetective } from './interactives/StructureDetective';
+import { SourceSelectionScenario } from './interactives/SourceSelectionScenario';
+import { DataTypeSourceMatrix } from './interactives/DataTypeSourceMatrix';
+import { RepresentationAndIdentifierLab } from './interactives/RepresentationAndIdentifierLab';
+import { InteractiveDataDictionary } from './interactives/InteractiveDataDictionary';
+import { DataTypeDecisionTree } from './interactives/DataTypeDecisionTree';
+import { FoodDeliveryCaseStudy } from './interactives/FoodDeliveryCaseStudy';
+import { DatasetDetectiveChallenge } from './interactives/DatasetDetectiveChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -123,6 +138,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic1_7 = lesson.id === 'm1-t7' || lesson.slug === 'numpy-basics-and-vectorization';
   const isTopic2_1 = lesson.id === 'm2-t1' || lesson.slug === 'apis-and-data-streams';
   const isTopic2_2 = lesson.id === 'm2-t2' || lesson.slug === 'web-scraping-and-parsing';
+  const isTopic2_3 = lesson.id === 'm2-t3' || lesson.slug === 'data-types-and-sources';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -176,6 +192,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 2.2 Interactive 1: HTML vs What You See */}
             {isTopic2_2 && <HtmlVsRenderedVisualizer />}
 
+            {/* Topic 2.3 Interactive 1: Data is Everywhere */}
+            {isTopic2_3 && <DataTypeEverywhereExplorer />}
+
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
 
@@ -224,6 +243,19 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_2 && <WebpageAnatomyExplorer />}
             {isTopic2_2 && <WebScrapingSimulator />}
             {isTopic2_2 && <ResponsibleScrapingGuide />}
+
+            {/* Topic 2.3 Interactives Suite */}
+            {isTopic2_3 && <DiscreteVsContinuousLab />}
+            {isTopic2_3 && <NominalVsOrdinalLab />}
+            {isTopic2_3 && <DataTypeDetective />}
+            {isTopic2_3 && <DataSourceHierarchyMap />}
+            {isTopic2_3 && <StructureDetective />}
+            {isTopic2_3 && <SourceSelectionScenario />}
+            {isTopic2_3 && <DataTypeSourceMatrix />}
+            {isTopic2_3 && <RepresentationAndIdentifierLab />}
+            {isTopic2_3 && <InteractiveDataDictionary />}
+            {isTopic2_3 && <DataTypeDecisionTree />}
+            {isTopic2_3 && <FoodDeliveryCaseStudy />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -365,6 +397,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.2 Capstone Challenge */}
             {isTopic2_2 && <WebDetectiveChallenge />}
+
+            {/* Topic 2.3 Capstone Challenge */}
+            {isTopic2_3 && <DatasetDetectiveChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
