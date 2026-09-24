@@ -10,7 +10,8 @@ export type InteractiveType =
   | 'scraping-lab'
   | 'datatype-lab'
   | 'imputation-lab'
-  | 'outlier-lab';
+  | 'outlier-lab'
+  | 'formatting-lab';
 
 export interface CodeExample {
   title: string;

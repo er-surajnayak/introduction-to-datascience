@@ -150,6 +150,20 @@ import { OutlierInvestigationChecklist } from './interactives/OutlierInvestigati
 import { ECommerceCaseStudy } from './interactives/ECommerceCaseStudy';
 import { OutlierDetectionChallenge } from './interactives/OutlierDetectionChallenge';
 
+// Topic 2.6 Interactives Suite
+import { FormattingDetective } from './interactives/FormattingDetective';
+import { StringStandardizationLab } from './interactives/StringStandardizationLab';
+import { CategoryStandardizerLab } from './interactives/CategoryStandardizerLab';
+import { NumericAndCurrencyCleanerLab } from './interactives/NumericAndCurrencyCleanerLab';
+import { DateParsingAndAmbiguityLab } from './interactives/DateParsingAndAmbiguityLab';
+import { BooleanAndIdentifierLab } from './interactives/BooleanAndIdentifierLab';
+import { DataTypeInspectorLab } from './interactives/DataTypeInspectorLab';
+import { FormattingBeforeAfterLab } from './interactives/FormattingBeforeAfterLab';
+import { FormattingPlayground } from './interactives/FormattingPlayground';
+import { MinMaxNormalizationVisualizer } from './interactives/MinMaxNormalizationVisualizer';
+import { MultiProblemEcommerceCaseStudy } from './interactives/MultiProblemEcommerceCaseStudy';
+import { DataFormattingChallenge } from './interactives/DataFormattingChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -167,6 +181,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_3 = lesson.id === 'm2-t3' || lesson.slug === 'data-types-and-sources';
   const isTopic2_4 = lesson.id === 'm2-t4' || lesson.slug === 'missing-data-imputation';
   const isTopic2_5 = lesson.id === 'm2-t5' || lesson.slug === 'outliers-detection-and-treatment';
+  const isTopic2_6 = lesson.id === 'm2-t6' || lesson.slug === 'data-formatting-and-normalization';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -228,6 +243,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.5 Interactive 1: Outlier Detective */}
             {isTopic2_5 && <OutlierDetective />}
+
+            {/* Topic 2.6 Interactive 1: Formatting Detective */}
+            {isTopic2_6 && <FormattingDetective />}
 
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
@@ -312,6 +330,18 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_5 && <MultivariateOutlierLab />}
             {isTopic2_5 && <OutlierInvestigationChecklist />}
             {isTopic2_5 && <ECommerceCaseStudy />}
+
+            {/* Topic 2.6 Interactives Suite */}
+            {isTopic2_6 && <StringStandardizationLab />}
+            {isTopic2_6 && <CategoryStandardizerLab />}
+            {isTopic2_6 && <NumericAndCurrencyCleanerLab />}
+            {isTopic2_6 && <DateParsingAndAmbiguityLab />}
+            {isTopic2_6 && <BooleanAndIdentifierLab />}
+            {isTopic2_6 && <DataTypeInspectorLab />}
+            {isTopic2_6 && <FormattingBeforeAfterLab />}
+            {isTopic2_6 && <FormattingPlayground />}
+            {isTopic2_6 && <MinMaxNormalizationVisualizer />}
+            {isTopic2_6 && <MultiProblemEcommerceCaseStudy />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -462,6 +492,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.5 Capstone Challenge */}
             {isTopic2_5 && <OutlierDetectionChallenge />}
+
+            {/* Topic 2.6 Capstone Challenge */}
+            {isTopic2_6 && <DataFormattingChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />

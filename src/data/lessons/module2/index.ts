@@ -4,6 +4,7 @@ import { topic2_2 } from './topic2_2';
 import { topic2_3 } from './topic2_3';
 import { topic2_4 } from './topic2_4';
 import { topic2_5 } from './topic2_5';
+import { topic2_6 } from './topic2_6';
 
 export const module2Lessons: Record<string, LessonContent> = {
   'apis-and-data-streams': topic2_1,
@@ -16,6 +17,8 @@ export const module2Lessons: Record<string, LessonContent> = {
   'm2-t4': topic2_4,
   'outliers-detection-and-treatment': topic2_5,
   'm2-t5': topic2_5,
+  'data-formatting-and-normalization': topic2_6,
+  'm2-t6': topic2_6,
 };
 
 export const module2LessonList: LessonContent[] = [
@@ -24,6 +27,7 @@ export const module2LessonList: LessonContent[] = [
   topic2_3,
   topic2_4,
   topic2_5,
+  topic2_6,
 ];
 
 export function getModule2Lesson(slugOrId: string): LessonContent | undefined {
