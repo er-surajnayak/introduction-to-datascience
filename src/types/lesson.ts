@@ -8,7 +8,8 @@ export type InteractiveType =
   | 'numpy-benchmark'
   | 'api-lab'
   | 'scraping-lab'
-  | 'datatype-lab';
+  | 'datatype-lab'
+  | 'imputation-lab';
 
 export interface CodeExample {
   title: string;

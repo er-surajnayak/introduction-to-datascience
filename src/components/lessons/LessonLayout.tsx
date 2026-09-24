@@ -124,6 +124,18 @@ import { DataTypeDecisionTree } from './interactives/DataTypeDecisionTree';
 import { FoodDeliveryCaseStudy } from './interactives/FoodDeliveryCaseStudy';
 import { DatasetDetectiveChallenge } from './interactives/DatasetDetectiveChallenge';
 
+// Topic 2.4 Interactives Suite
+import { ZeroVsMissingLab } from './interactives/ZeroVsMissingLab';
+import { MissingnessMechanismsExplorer } from './interactives/MissingnessMechanismsExplorer';
+import { MissingDataDetective } from './interactives/MissingDataDetective';
+import { DropVsKeepExperiment } from './interactives/DropVsKeepExperiment';
+import { MeanVsMedianPlayground } from './interactives/MeanVsMedianPlayground';
+import { CategoricalAndSequentialImputationLab } from './interactives/CategoricalAndSequentialImputationLab';
+import { ImputationStrategyDecisionTree } from './interactives/ImputationStrategyDecisionTree';
+import { ObservedVsImputedVisualizer } from './interactives/ObservedVsImputedVisualizer';
+import { StudentPerformanceCaseStudy } from './interactives/StudentPerformanceCaseStudy';
+import { MissingDataChallenge } from './interactives/MissingDataChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -139,6 +151,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_1 = lesson.id === 'm2-t1' || lesson.slug === 'apis-and-data-streams';
   const isTopic2_2 = lesson.id === 'm2-t2' || lesson.slug === 'web-scraping-and-parsing';
   const isTopic2_3 = lesson.id === 'm2-t3' || lesson.slug === 'data-types-and-sources';
+  const isTopic2_4 = lesson.id === 'm2-t4' || lesson.slug === 'missing-data-imputation';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -194,6 +207,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.3 Interactive 1: Data is Everywhere */}
             {isTopic2_3 && <DataTypeEverywhereExplorer />}
+
+            {/* Topic 2.4 Interactive 1: Zero vs Missing Lab */}
+            {isTopic2_4 && <ZeroVsMissingLab />}
 
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
@@ -256,6 +272,16 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_3 && <InteractiveDataDictionary />}
             {isTopic2_3 && <DataTypeDecisionTree />}
             {isTopic2_3 && <FoodDeliveryCaseStudy />}
+
+            {/* Topic 2.4 Interactives Suite */}
+            {isTopic2_4 && <MissingnessMechanismsExplorer />}
+            {isTopic2_4 && <MissingDataDetective />}
+            {isTopic2_4 && <DropVsKeepExperiment />}
+            {isTopic2_4 && <MeanVsMedianPlayground />}
+            {isTopic2_4 && <CategoricalAndSequentialImputationLab />}
+            {isTopic2_4 && <ImputationStrategyDecisionTree />}
+            {isTopic2_4 && <ObservedVsImputedVisualizer />}
+            {isTopic2_4 && <StudentPerformanceCaseStudy />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -400,6 +426,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.3 Capstone Challenge */}
             {isTopic2_3 && <DatasetDetectiveChallenge />}
+
+            {/* Topic 2.4 Capstone Challenge */}
+            {isTopic2_4 && <MissingDataChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
