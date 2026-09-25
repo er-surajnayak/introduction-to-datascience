@@ -68,20 +68,20 @@ export default function QuestionBankPage() {
               Unit 1: Introduction to Data Science (47 Questions)
             </button>
             <button
-              disabled
+              onClick={() => setSelectedModuleId('module-2')}
               style={{
                 padding: '8px 16px',
                 borderRadius: '4px',
                 fontSize: '0.875rem',
-                fontWeight: 500,
-                cursor: 'not-allowed',
-                border: '1px dashed var(--ds-border-subtle)',
-                background: 'transparent',
-                color: 'var(--ds-text-muted)',
-                opacity: 0.6,
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: selectedModuleId === 'module-2' ? '1px solid var(--ds-cyan)' : '1px solid var(--ds-border-subtle)',
+                background: selectedModuleId === 'module-2' ? 'var(--ds-cyan-dim)' : 'var(--ds-bg-core)',
+                color: selectedModuleId === 'module-2' ? 'var(--ds-cyan)' : 'var(--ds-text-secondary)',
+                transition: 'all 0.15s ease',
               }}
             >
-              Unit 2: Data Preprocessing (Coming Soon)
+              Unit 2: Data Collection and Preprocessing (107 Questions)
             </button>
             <button
               disabled

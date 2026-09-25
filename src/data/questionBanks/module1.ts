@@ -1,13 +1,13 @@
 export interface QuestionBankItem {
   id: string;
   questionNumber: number;
-  part: 'A' | 'B';
+  part: 'A' | 'B' | 'C';
   marks: number;
   question: string;
   topicTag: string;
   modelAnswer: {
     shortSummary?: string;
-    keyPoints: string[];
+    keyPoints?: string[];
     detailedExplanation?: string;
     codeSnippet?: string;
     diagramOrSteps?: string[];
@@ -21,6 +21,7 @@ export interface ModuleQuestionBank {
   unitName: string;
   partAQuestions: QuestionBankItem[];
   partBQuestions: QuestionBankItem[];
+  partCQuestions?: QuestionBankItem[];
 }
 
 export const module1QuestionBank: ModuleQuestionBank = {

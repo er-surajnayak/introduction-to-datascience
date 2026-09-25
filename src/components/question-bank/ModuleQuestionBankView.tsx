@@ -22,15 +22,27 @@ interface Props {
 }
 
 export function ModuleQuestionBankView({ questionBank }: Props) {
-  const [activePart, setActivePart] = useState<'ALL' | 'A' | 'B'>('ALL');
+  const [activePart, setActivePart] = useState<'ALL' | 'A' | 'B' | 'C'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
   const [bookmarkedIds, setBookmarkedIds] = useState<Record<string, boolean>>({});
   const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
 
   const allQuestions = useMemo(() => {
-    return [...questionBank.partAQuestions, ...questionBank.partBQuestions];
+    return [
+      ...questionBank.partAQuestions,
+      ...questionBank.partBQuestions,
+      ...(questionBank.partCQuestions || []),
+    ];
   }, [questionBank]);
+
+  const partACount = questionBank.partAQuestions?.length || 0;
+  const partBCount = questionBank.partBQuestions?.length || 0;
+  const partCCount = questionBank.partCQuestions?.length || 0;
+
+  const partAMarks = questionBank.partAQuestions?.[0]?.marks || 3;
+  const partBMarks = questionBank.partBQuestions?.[0]?.marks || (partCCount > 0 ? 5 : 14);
+  const partCMarks = questionBank.partCQuestions?.[0]?.marks || 14;
 
   const filteredQuestions = useMemo(() => {
     return allQuestions.filter((q) => {
@@ -43,7 +55,7 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
         const matchesQ = q.question.toLowerCase().includes(query);
         const matchesTag = q.topicTag.toLowerCase().includes(query);
         const matchesSummary = q.modelAnswer.shortSummary?.toLowerCase().includes(query) || false;
-        const matchesPoints = q.modelAnswer.keyPoints.some((p) => p.toLowerCase().includes(query));
+        const matchesPoints = q.modelAnswer.keyPoints?.some((p) => p.toLowerCase().includes(query)) || false;
         return matchesQ || matchesTag || matchesSummary || matchesPoints;
       }
       return true;
@@ -86,6 +98,12 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
 
   const bookmarkedCount = Object.values(bookmarkedIds).filter(Boolean).length;
 
+  const getPartColor = (part: 'A' | 'B' | 'C') => {
+    if (part === 'A') return { text: 'var(--ds-cyan)', bg: 'var(--ds-cyan-dim)', border: 'var(--ds-cyan)', tagType: 'cyan' as const };
+    if (part === 'B') return { text: 'var(--ds-purple)', bg: 'rgba(138, 63, 252, 0.15)', border: 'var(--ds-purple)', tagType: 'purple' as const };
+    return { text: '#ff7eb6', bg: 'rgba(255, 126, 182, 0.15)', border: '#ff7eb6', tagType: 'magenta' as const };
+  };
+
   return (
     <div
       id="question-bank"
@@ -108,13 +126,20 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
             </h2>
           </div>
           <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--ds-text-secondary)' }}>
-            Curated university semester exam questions with structured model answers, key scoring points, and verified Python/NumPy code solutions.
+            Curated university semester exam questions with structured model answers, key scoring points, and verified Python/NumPy/Pandas code solutions.
           </p>
         </div>
 
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <Tag type="cyan" size="md">Part A: 40 Questions (3 Marks)</Tag>
-          <Tag type="purple" size="md">Part B: 7 Questions (14 Marks)</Tag>
+          {partACount > 0 && (
+            <Tag type="cyan" size="md">Part A: {partACount} Qs ({partAMarks} Marks)</Tag>
+          )}
+          {partBCount > 0 && (
+            <Tag type="purple" size="md">Part B: {partBCount} Qs ({partBMarks} Marks)</Tag>
+          )}
+          {partCCount > 0 && (
+            <Tag type="magenta" size="md">Part C: {partCCount} Qs ({partCMarks} Marks)</Tag>
+          )}
           {bookmarkedCount > 0 && (
             <Tag type="green" size="md">{bookmarkedCount} Bookmarked</Tag>
           )}
@@ -157,38 +182,60 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
           >
             All Questions ({allQuestions.length})
           </button>
-          <button
-            onClick={() => setActivePart('A')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '4px',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: activePart === 'A' ? '1px solid var(--ds-cyan)' : '1px solid var(--ds-border-subtle)',
-              background: activePart === 'A' ? 'var(--ds-cyan-dim)' : 'transparent',
-              color: activePart === 'A' ? 'var(--ds-cyan)' : 'var(--ds-text-secondary)',
-              transition: 'all 0.15s ease',
-            }}
-          >
-            Part A (3 Marks) — 40 Qs
-          </button>
-          <button
-            onClick={() => setActivePart('B')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '4px',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: activePart === 'B' ? '1px solid var(--ds-purple)' : '1px solid var(--ds-border-subtle)',
-              background: activePart === 'B' ? 'rgba(138, 63, 252, 0.15)' : 'transparent',
-              color: activePart === 'B' ? 'var(--ds-purple)' : 'var(--ds-text-secondary)',
-              transition: 'all 0.15s ease',
-            }}
-          >
-            Part B (14 Marks) — 7 Qs
-          </button>
+          {partACount > 0 && (
+            <button
+              onClick={() => setActivePart('A')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '4px',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: activePart === 'A' ? '1px solid var(--ds-cyan)' : '1px solid var(--ds-border-subtle)',
+                background: activePart === 'A' ? 'var(--ds-cyan-dim)' : 'transparent',
+                color: activePart === 'A' ? 'var(--ds-cyan)' : 'var(--ds-text-secondary)',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              Part A ({partAMarks} Marks) — {partACount} Qs
+            </button>
+          )}
+          {partBCount > 0 && (
+            <button
+              onClick={() => setActivePart('B')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '4px',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: activePart === 'B' ? '1px solid var(--ds-purple)' : '1px solid var(--ds-border-subtle)',
+                background: activePart === 'B' ? 'rgba(138, 63, 252, 0.15)' : 'transparent',
+                color: activePart === 'B' ? 'var(--ds-purple)' : 'var(--ds-text-secondary)',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              Part B ({partBMarks} Marks) — {partBCount} Qs
+            </button>
+          )}
+          {partCCount > 0 && (
+            <button
+              onClick={() => setActivePart('C')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '4px',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: activePart === 'C' ? '1px solid #ff7eb6' : '1px solid var(--ds-border-subtle)',
+                background: activePart === 'C' ? 'rgba(255, 126, 182, 0.15)' : 'transparent',
+                color: activePart === 'C' ? '#ff7eb6' : 'var(--ds-text-secondary)',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              Part C ({partCMarks} Marks) — {partCCount} Qs
+            </button>
+          )}
         </div>
 
         {/* Global Expand/Collapse */}
@@ -207,7 +254,7 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
         <Search
           id="qb-search"
           labelText=""
-          placeholder="Search question keywords (e.g. NumPy, Factorial, Missing Values, Lifecycle, EDA, Prime, Cross-Validation)..."
+          placeholder="Search question keywords (e.g. APIs, Web Scraping, Missing Values, Outliers, IQR, NumPy, Pandas, GroupBy, Merging)..."
           value={searchQuery}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
           size="md"
@@ -220,6 +267,7 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
           {filteredQuestions.map((q) => {
             const isExpanded = !!expandedIds[q.id];
             const isBookmarked = !!bookmarkedIds[q.id];
+            const partColor = getPartColor(q.part);
 
             return (
               <div
@@ -253,15 +301,15 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
                         fontFamily: 'var(--ds-font-mono)',
                         fontSize: '0.8125rem',
                         fontWeight: 700,
-                        color: q.part === 'A' ? 'var(--ds-cyan)' : 'var(--ds-purple)',
+                        color: partColor.text,
                         padding: '3px 8px',
-                        background: q.part === 'A' ? 'var(--ds-cyan-dim)' : 'rgba(138, 63, 252, 0.15)',
+                        background: partColor.bg,
                         borderRadius: '3px',
                         whiteSpace: 'nowrap',
                         marginTop: '2px',
                       }}
                     >
-                      {q.part === 'A' ? `Q${q.questionNumber}` : `Part B Q${q.questionNumber}`}
+                      {`Part ${q.part} Q${q.questionNumber}`}
                     </span>
 
                     <div style={{ flexGrow: 1 }}>
@@ -278,7 +326,7 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
                       </h3>
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                        <Tag type={q.part === 'A' ? 'cyan' : 'purple'} size="sm">
+                        <Tag type={partColor.tagType} size="sm">
                           {q.marks} Marks
                         </Tag>
                         <Tag type="warm-gray" size="sm">
@@ -376,18 +424,20 @@ export function ModuleQuestionBankView({ questionBank }: Props) {
                     )}
 
                     {/* Key Marking Points List */}
-                    <div style={{ marginBottom: '1rem' }}>
-                      <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ds-emerald)', marginBottom: '6px', textTransform: 'uppercase' }}>
-                        Key Exam Points &amp; Marking Breakdown ({q.marks} Marks):
+                    {q.modelAnswer.keyPoints && q.modelAnswer.keyPoints.length > 0 && (
+                      <div style={{ marginBottom: '1rem' }}>
+                        <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ds-emerald)', marginBottom: '6px', textTransform: 'uppercase' }}>
+                          Key Exam Points &amp; Marking Breakdown ({q.marks} Marks):
+                        </div>
+                        <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.875rem', color: 'var(--ds-text-secondary)', lineHeight: 1.7 }}>
+                          {q.modelAnswer.keyPoints.map((pt, pIdx) => (
+                            <li key={pIdx} style={{ marginBottom: '4px' }}>
+                              {pt}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.875rem', color: 'var(--ds-text-secondary)', lineHeight: 1.7 }}>
-                        {q.modelAnswer.keyPoints.map((pt, pIdx) => (
-                          <li key={pIdx} style={{ marginBottom: '4px' }}>
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    )}
 
                     {/* Code Snippet if applicable */}
                     {q.modelAnswer.codeSnippet && (
