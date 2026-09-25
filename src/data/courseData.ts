@@ -191,11 +191,11 @@ export const quickAccessItems: QuickAccessItem[] = [
   {
     id: 'question-bank',
     title: 'Question Bank',
-    description: 'Curated 200+ university exam & placement questions categorized by topic and difficulty level.',
+    description: 'Curated university exam & placement questions categorized by Part A (3 Marks) and Part B (14 Marks) with complete solutions.',
     category: 'Exam Prep',
-    status: 'coming-soon',
+    status: 'available',
     iconType: 'document',
-    badge: 'Coming Soon',
+    badge: 'Unit 1 Live',
   },
   {
     id: 'quiz-arena',

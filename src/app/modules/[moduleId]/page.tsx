@@ -22,6 +22,8 @@ import {
 } from '@carbon/icons-react';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 import { courseConfig } from '@/data/courseData';
+import { getQuestionBankByModuleId } from '@/data/questionBanks';
+import { ModuleQuestionBankView } from '@/components/question-bank/ModuleQuestionBankView';
 
 export default function ModuleDetailPage() {
   const params = useParams();
@@ -406,6 +408,11 @@ export default function ModuleDetailPage() {
                 })}
               </div>
             </div>
+
+            {/* Module Question Bank Section */}
+            {getQuestionBankByModuleId(moduleItem.id) && (
+              <ModuleQuestionBankView questionBank={getQuestionBankByModuleId(moduleItem.id)!} />
+            )}
 
             {/* Next / Prev Navigation */}
             <div

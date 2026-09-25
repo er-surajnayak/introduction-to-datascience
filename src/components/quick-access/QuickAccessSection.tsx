@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Tag, Button, Modal } from '@carbon/react';
 import {
   DocumentTasks,
@@ -139,20 +140,37 @@ export function QuickAccessSection() {
               </p>
 
               {/* Action Button */}
-              <Button
-                kind="tertiary"
-                size="md"
-                renderIcon={Information}
-                onClick={() => setSelectedItem(item)}
-                style={{
-                  width: '100%',
-                  borderColor: 'var(--ds-border-subtle)',
-                  color: 'var(--ds-text-primary)',
-                  fontSize: '0.875rem',
-                }}
-              >
-                Feature Preview
-              </Button>
+              {item.id === 'question-bank' ? (
+                <Link href="/question-bank" passHref legacyBehavior>
+                  <Button
+                    kind="primary"
+                    size="md"
+                    renderIcon={ArrowRight}
+                    style={{
+                      width: '100%',
+                      fontSize: '0.875rem',
+                      backgroundColor: '#0f62fe',
+                    }}
+                  >
+                    Open Question Bank
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  kind="tertiary"
+                  size="md"
+                  renderIcon={Information}
+                  onClick={() => setSelectedItem(item)}
+                  style={{
+                    width: '100%',
+                    borderColor: 'var(--ds-border-subtle)',
+                    color: 'var(--ds-text-primary)',
+                    fontSize: '0.875rem',
+                  }}
+                >
+                  Feature Preview
+                </Button>
+              )}
             </div>
           ))}
         </div>

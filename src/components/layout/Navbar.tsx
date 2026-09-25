@@ -80,21 +80,14 @@ export function Navbar() {
           </Link>
           <HeaderMenuItem href="#modules">Modules</HeaderMenuItem>
           <HeaderMenuItem href="#journey">Learning Journey</HeaderMenuItem>
-          <HeaderMenuItem
-            href="#quick-access"
-            onClick={(e) => {
-              e.preventDefault();
-              handleOpenUnavailable(
-                'Question Bank',
-                'The Question Bank contains 200+ semester exam & placement questions. It will be unlocked with full module solutions in Phase 2.'
-              );
-            }}
-          >
-            Question Bank
-            <Tag type="cool-gray" size="sm" style={{ marginLeft: '6px', fontSize: '0.65rem' }}>
-              Soon
-            </Tag>
-          </HeaderMenuItem>
+          <Link href="/question-bank" passHref legacyBehavior>
+            <HeaderMenuItem href="/question-bank">
+              Question Bank
+              <Tag type="cyan" size="sm" style={{ marginLeft: '6px', fontSize: '0.65rem' }}>
+                Unit 1
+              </Tag>
+            </HeaderMenuItem>
+          </Link>
           <HeaderMenuItem
             href="#quick-access"
             onClick={(e) => {
@@ -218,15 +211,14 @@ export function Navbar() {
             >
               Learning Journey
             </SideNavLink>
-            <SideNavLink
-              href="#quick-access"
-              onClick={() => {
-                setIsSideNavExpanded(false);
-                handleOpenUnavailable('Question Bank', 'Unlocking in Phase 2.');
-              }}
-            >
-              Question Bank
-            </SideNavLink>
+            <Link href="/question-bank" passHref legacyBehavior>
+              <SideNavLink
+                href="/question-bank"
+                onClick={() => setIsSideNavExpanded(false)}
+              >
+                Question Bank (Unit 1)
+              </SideNavLink>
+            </Link>
             <SideNavLink
               href="#quick-access"
               onClick={() => {
