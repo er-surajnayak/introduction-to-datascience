@@ -211,9 +211,9 @@ export const quickAccessItems: QuickAccessItem[] = [
     title: 'Ask DI Assistant',
     description: 'Context-aware interactive tutor to explain data formulas, debug Python code, and break down statistical proofs.',
     category: 'AI Mentor',
-    status: 'coming-soon',
+    status: 'available',
     iconType: 'chat',
-    badge: 'Preview Mode',
+    badge: 'AI Active',
   },
   {
     id: 'real-world-tasks',

@@ -103,21 +103,14 @@ export function Navbar() {
               Soon
             </Tag>
           </HeaderMenuItem>
-          <HeaderMenuItem
-            href="#quick-access"
-            onClick={(e) => {
-              e.preventDefault();
-              handleOpenUnavailable(
-                'Ask DI (AI Mentor)',
-                'Ask DI will be your interactive AI companion for debugging NumPy arrays, explaining statistical formulas, and reviewing homework. Coming in Phase 2.'
-              );
-            }}
-          >
-            Ask DI
-            <Tag type="cyan" size="sm" style={{ marginLeft: '6px', fontSize: '0.65rem' }}>
-              Preview
-            </Tag>
-          </HeaderMenuItem>
+          <Link href="/ask-di" passHref legacyBehavior>
+            <HeaderMenuItem href="/ask-di" isActive={pathname === '/ask-di'}>
+              Ask DI
+              <Tag type="cyan" size="sm" style={{ marginLeft: '6px', fontSize: '0.65rem' }}>
+                AI
+              </Tag>
+            </HeaderMenuItem>
+          </Link>
         </HeaderNavigation>
 
         <HeaderGlobalBar>
@@ -228,15 +221,15 @@ export function Navbar() {
             >
               Quiz Arena
             </SideNavLink>
-            <SideNavLink
-              href="#quick-access"
-              onClick={() => {
-                setIsSideNavExpanded(false);
-                handleOpenUnavailable('Ask DI', 'Coming soon in Phase 2.');
-              }}
-            >
-              Ask DI Assistant [Preview]
-            </SideNavLink>
+            <Link href="/ask-di" passHref legacyBehavior>
+              <SideNavLink
+                href="/ask-di"
+                isActive={pathname === '/ask-di'}
+                onClick={() => setIsSideNavExpanded(false)}
+              >
+                Ask DI (AI Assistant)
+              </SideNavLink>
+            </Link>
           </SideNavItems>
         </SideNav>
       </Header>

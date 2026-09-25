@@ -115,9 +115,9 @@ export function Footer() {
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               <li>
-                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
-                  Question Bank <Tag size="sm" type="cool-gray">Soon</Tag>
-                </a>
+                <Link href="/question-bank" style={{ color: 'var(--ds-text-secondary)', textDecoration: 'none' }}>
+                  Question Bank <Tag size="sm" type="cyan">Active</Tag>
+                </Link>
               </li>
               <li>
                 <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
@@ -125,9 +125,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>
-                  Ask DI Assistant <Tag size="sm" type="cyan">Preview</Tag>
-                </a>
+                <Link href="/ask-di" style={{ color: 'var(--ds-text-secondary)', textDecoration: 'none' }}>
+                  Ask DI Assistant <Tag size="sm" type="purple">AI Active</Tag>
+                </Link>
               </li>
               <li>
                 <a href="#quick-access" style={{ color: 'var(--ds-text-secondary)' }}>

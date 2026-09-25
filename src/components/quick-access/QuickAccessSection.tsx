@@ -155,6 +155,22 @@ export function QuickAccessSection() {
                     Open Question Bank
                   </Button>
                 </Link>
+              ) : item.id === 'ask-di' ? (
+                <Link href="/ask-di" passHref legacyBehavior>
+                  <Button
+                    kind="primary"
+                    size="md"
+                    renderIcon={ArrowRight}
+                    style={{
+                      width: '100%',
+                      fontSize: '0.875rem',
+                      background: 'linear-gradient(135deg, var(--ds-cyan), var(--ds-purple))',
+                      border: 'none',
+                    }}
+                  >
+                    Launch Ask DI (AI Mentor)
+                  </Button>
+                </Link>
               ) : (
                 <Button
                   kind="tertiary"
