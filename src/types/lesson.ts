@@ -11,7 +11,8 @@ export type InteractiveType =
   | 'datatype-lab'
   | 'imputation-lab'
   | 'outlier-lab'
-  | 'formatting-lab';
+  | 'formatting-lab'
+  | 'operations-lab';
 
 export interface CodeExample {
   title: string;

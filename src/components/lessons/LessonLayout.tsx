@@ -164,6 +164,19 @@ import { MinMaxNormalizationVisualizer } from './interactives/MinMaxNormalizatio
 import { MultiProblemEcommerceCaseStudy } from './interactives/MultiProblemEcommerceCaseStudy';
 import { DataFormattingChallenge } from './interactives/DataFormattingChallenge';
 
+// Topic 2.7 Interactives Suite
+import { NumpyArrayRefresherLab } from './interactives/NumpyArrayRefresherLab';
+import { NumpyAggregationAndAxisLab } from './interactives/NumpyAggregationAndAxisLab';
+import { PandasSeriesVsDataframeLab } from './interactives/PandasSeriesVsDataframeLab';
+import { PandasIndexingLocIlocLab } from './interactives/PandasIndexingLocIlocLab';
+import { BooleanMaskAndFilteringLab } from './interactives/BooleanMaskAndFilteringLab';
+import { ColumnTransformAndApplyLab } from './interactives/ColumnTransformAndApplyLab';
+import { GroupByVisualizerLab } from './interactives/GroupByVisualizerLab';
+import { MergeAndConcatVisualizerLab } from './interactives/MergeAndConcatVisualizerLab';
+import { DataManipulationPlayground } from './interactives/DataManipulationPlayground';
+import { EcommerceCaseStudyLab } from './interactives/EcommerceCaseStudyLab';
+import { DataOperationsChallenge } from './interactives/DataOperationsChallenge';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -182,6 +195,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_4 = lesson.id === 'm2-t4' || lesson.slug === 'missing-data-imputation';
   const isTopic2_5 = lesson.id === 'm2-t5' || lesson.slug === 'outliers-detection-and-treatment';
   const isTopic2_6 = lesson.id === 'm2-t6' || lesson.slug === 'data-formatting-and-normalization';
+  const isTopic2_7 = lesson.id === 'm2-t7' || lesson.slug === 'numpy-and-pandas-operations';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -246,6 +260,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.6 Interactive 1: Formatting Detective */}
             {isTopic2_6 && <FormattingDetective />}
+
+            {/* Topic 2.7 Interactive 1: NumPy Array Refresher & Vectorization */}
+            {isTopic2_7 && <NumpyArrayRefresherLab />}
 
             {/* Topic 1.1 Interactive 1: Data -> Info -> Insight -> Decision */}
             {isTopic1_1 && <DataToDecisionTransformer />}
@@ -342,6 +359,17 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_6 && <FormattingPlayground />}
             {isTopic2_6 && <MinMaxNormalizationVisualizer />}
             {isTopic2_6 && <MultiProblemEcommerceCaseStudy />}
+
+            {/* Topic 2.7 Interactives Suite */}
+            {isTopic2_7 && <NumpyAggregationAndAxisLab />}
+            {isTopic2_7 && <PandasSeriesVsDataframeLab />}
+            {isTopic2_7 && <PandasIndexingLocIlocLab />}
+            {isTopic2_7 && <BooleanMaskAndFilteringLab />}
+            {isTopic2_7 && <ColumnTransformAndApplyLab />}
+            {isTopic2_7 && <GroupByVisualizerLab />}
+            {isTopic2_7 && <MergeAndConcatVisualizerLab />}
+            {isTopic2_7 && <DataManipulationPlayground />}
+            {isTopic2_7 && <EcommerceCaseStudyLab />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -495,6 +523,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 2.6 Capstone Challenge */}
             {isTopic2_6 && <DataFormattingChallenge />}
+
+            {/* Topic 2.7 Capstone Challenge */}
+            {isTopic2_7 && <DataOperationsChallenge />}
 
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
