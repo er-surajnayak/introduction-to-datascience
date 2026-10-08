@@ -7,6 +7,7 @@ import { Button } from '@carbon/react';
 import { ArrowLeft, ArrowRight, Locked } from '@carbon/icons-react';
 import { getModule1Lesson } from '@/data/lessons/module1';
 import { getModule2Lesson } from '@/data/lessons/module2';
+import { getModule3Lesson } from '@/data/lessons/module3';
 import { LessonLayout } from '@/components/lessons/LessonLayout';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 
@@ -20,8 +21,10 @@ export default function TopicPage() {
     lesson = getModule1Lesson(topicSlug);
   } else if (moduleId === 'module-2') {
     lesson = getModule2Lesson(topicSlug);
+  } else if (moduleId === 'module-3') {
+    lesson = getModule3Lesson(topicSlug);
   } else {
-    lesson = getModule1Lesson(topicSlug) || getModule2Lesson(topicSlug);
+    lesson = getModule1Lesson(topicSlug) || getModule2Lesson(topicSlug) || getModule3Lesson(topicSlug);
   }
 
   const isModUnlocked = isUnlocked(moduleId);

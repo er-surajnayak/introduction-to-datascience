@@ -8,6 +8,7 @@ import { CheckmarkFilled, Locked, PlayFilledAlt, Time, Catalog } from '@carbon/i
 import { LessonContent } from '@/types/lesson';
 import { module1LessonList } from '@/data/lessons/module1';
 import { module2LessonList } from '@/data/lessons/module2';
+import { module3LessonList } from '@/data/lessons/module3';
 import { useCourseProgress } from '@/context/CourseProgressContext';
 
 import { LessonHero } from './LessonHero';
@@ -177,6 +178,25 @@ import { DataManipulationPlayground } from './interactives/DataManipulationPlayg
 import { EcommerceCaseStudyLab } from './interactives/EcommerceCaseStudyLab';
 import { DataOperationsChallenge } from './interactives/DataOperationsChallenge';
 
+// Topic 3.1 Interactives Suite
+import { DataDetectiveHeroLab } from './interactives/DataDetectiveHeroLab';
+import { PopulationVsSampleLab } from './interactives/PopulationVsSampleLab';
+import { CountAndMissingnessLab } from './interactives/CountAndMissingnessLab';
+import { MeanCalculatorAndBalanceLab } from './interactives/MeanCalculatorAndBalanceLab';
+import { MedianAndModeLab } from './interactives/MedianAndModeLab';
+import { OutlierTrapAndDecisionLab } from './interactives/OutlierTrapAndDecisionLab';
+import { SpreadAndRangeLab } from './interactives/SpreadAndRangeLab';
+import { VarianceStepVisualizer } from './interactives/VarianceStepVisualizer';
+import { StandardDeviationComparisonLab } from './interactives/StandardDeviationComparisonLab';
+import { PercentileAndQuartileRuler } from './interactives/PercentileAndQuartileRuler';
+import { DescriptiveDashboard } from './interactives/DescriptiveDashboard';
+import { DescribeBreakdownLab } from './interactives/DescribeBreakdownLab';
+import { StatsDetectiveGame } from './interactives/StatsDetectiveGame';
+import { StudentMarksCaseStudyLab } from './interactives/StudentMarksCaseStudyLab';
+import { SalaryCaseStudyLab } from './interactives/SalaryCaseStudyLab';
+import { DescriptiveStatsFinalChallenge } from './interactives/DescriptiveStatsFinalChallenge';
+import { TransitionToDistributionsLab } from './interactives/TransitionToDistributionsLab';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -196,6 +216,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_5 = lesson.id === 'm2-t5' || lesson.slug === 'outliers-detection-and-treatment';
   const isTopic2_6 = lesson.id === 'm2-t6' || lesson.slug === 'data-formatting-and-normalization';
   const isTopic2_7 = lesson.id === 'm2-t7' || lesson.slug === 'numpy-and-pandas-operations';
+  const isTopic3_1 = lesson.id === 'm3-t1' || lesson.slug === 'descriptive-statistics';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -225,7 +246,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             </BreadcrumbItem>
             <BreadcrumbItem>
               <Link href={`/modules/${lesson.moduleId}`}>
-                {lesson.moduleId === 'module-2'
+                {lesson.moduleId === 'module-3'
+                  ? 'Module 3: Exploratory Data Analysis'
+                  : lesson.moduleId === 'module-2'
                   ? 'Module 2: Data Collection'
                   : 'Module 1: Introduction'}
               </Link>
@@ -242,6 +265,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
           <div style={{ minWidth: 0 }}>
             <LessonHero lesson={lesson} />
             <StorySection hook={lesson.hook} />
+
+            {/* Topic 3.1 Early Interactives: Data Detective & Population vs Sample & Count */}
+            {isTopic3_1 && <DataDetectiveHeroLab />}
+            {isTopic3_1 && <PopulationVsSampleLab />}
+            {isTopic3_1 && <CountAndMissingnessLab />}
 
             {/* Topic 2.1 Interactive 1: The Restaurant Analogy */}
             {isTopic2_1 && <ApiRestaurantAnalogy />}
@@ -370,6 +398,20 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic2_7 && <MergeAndConcatVisualizerLab />}
             {isTopic2_7 && <DataManipulationPlayground />}
             {isTopic2_7 && <EcommerceCaseStudyLab />}
+
+            {/* Topic 3.1 Interactives Suite */}
+            {isTopic3_1 && <MeanCalculatorAndBalanceLab />}
+            {isTopic3_1 && <MedianAndModeLab />}
+            {isTopic3_1 && <OutlierTrapAndDecisionLab />}
+            {isTopic3_1 && <SpreadAndRangeLab />}
+            {isTopic3_1 && <VarianceStepVisualizer />}
+            {isTopic3_1 && <StandardDeviationComparisonLab />}
+            {isTopic3_1 && <PercentileAndQuartileRuler />}
+            {isTopic3_1 && <DescriptiveDashboard />}
+            {isTopic3_1 && <DescribeBreakdownLab />}
+            {isTopic3_1 && <StatsDetectiveGame />}
+            {isTopic3_1 && <StudentMarksCaseStudyLab />}
+            {isTopic3_1 && <SalaryCaseStudyLab />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -527,10 +569,16 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 2.7 Capstone Challenge */}
             {isTopic2_7 && <DataOperationsChallenge />}
 
+            {/* Topic 3.1 Capstone Challenge */}
+            {isTopic3_1 && <DescriptiveStatsFinalChallenge />}
+
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
             <InteractiveQuiz questions={lesson.quiz} />
             <TopicSummary lesson={lesson} />
+
+            {/* Topic 3.1 Transition to 3.2 Distributions */}
+            {isTopic3_1 && <TransitionToDistributionsLab />}
           </div>
 
           {/* Sticky Topic Navigation Sidebar */}
@@ -554,7 +602,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
                 <span style={{ fontSize: '0.75rem', fontFamily: 'var(--ds-font-mono)', color: 'var(--ds-cyan)', textTransform: 'uppercase' }}>
-                  {lesson.moduleId === 'module-2' ? 'Module 2 Progress' : 'Module 1 Progress'}
+                  {lesson.moduleId === 'module-3'
+                    ? 'Module 3 Progress'
+                    : lesson.moduleId === 'module-2'
+                    ? 'Module 2 Progress'
+                    : 'Module 1 Progress'}
                 </span>
                 <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ds-text-primary)' }}>
                   {activeModule?.progress || 0}%
@@ -565,7 +617,13 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
                 max={100}
                 size="small"
                 hideLabel
-                label={lesson.moduleId === 'module-2' ? 'Module 2' : 'Module 1'}
+                label={
+                  lesson.moduleId === 'module-3'
+                    ? 'Module 3'
+                    : lesson.moduleId === 'module-2'
+                    ? 'Module 2'
+                    : 'Module 1'
+                }
               />
             </div>
 
@@ -592,14 +650,21 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
               >
                 <Catalog size={16} style={{ color: 'var(--ds-cyan)' }} />
                 <span>
-                  {lesson.moduleId === 'module-2'
+                  {lesson.moduleId === 'module-3'
+                    ? `Module 3 Topics (${module3LessonList.length})`
+                    : lesson.moduleId === 'module-2'
                     ? `Module 2 Topics (${module2LessonList.length})`
                     : `Module 1 Topics (${module1LessonList.length})`}
                 </span>
               </div>
 
               <div style={{ padding: '0.5rem 0' }}>
-                {(lesson.moduleId === 'module-2' ? module2LessonList : module1LessonList).map((top, idx) => {
+                {(lesson.moduleId === 'module-3'
+                  ? module3LessonList
+                  : lesson.moduleId === 'module-2'
+                  ? module2LessonList
+                  : module1LessonList
+                ).map((top, idx) => {
                   const isCurrent = top.slug === lesson.slug;
                   const isDone = isTopicCompleted(top.id);
 

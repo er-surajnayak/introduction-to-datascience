@@ -69,7 +69,7 @@ export const courseConfig: CourseConfig = {
       subtitle: 'Statistical Modeling, Visual Diagnostics & Hypothesis Testing',
       description:
         'Uncover hidden patterns in distributions, calculate correlations and covariance, test hypotheses with ANOVA, and build statistical intuition from evidence.',
-      status: 'locked',
+      status: 'available',
       progress: 0,
       unlockCondition: null,
       estimatedHours: '8-9 hrs',
@@ -78,7 +78,7 @@ export const courseConfig: CourseConfig = {
       prerequisites: ['Module 2: Data Collection and Preprocessing'],
       keyOutcome: 'Formulate hypotheses, validate distribution assumptions, and derive rigorous statistical insights.',
       topics: [
-        { id: 'm3-t1', title: 'Descriptive Statistics', estimatedMinutes: 30 },
+        { id: 'm3-t1', slug: 'descriptive-statistics', title: 'Descriptive Statistics', estimatedMinutes: 30 },
         { id: 'm3-t2', title: 'Distributions & Skewness', estimatedMinutes: 35 },
         { id: 'm3-t3', title: 'Data Visualization & Chart Selection', estimatedMinutes: 40 },
         { id: 'm3-t4', title: 'Correlation & Multicollinearity', estimatedMinutes: 35 },
