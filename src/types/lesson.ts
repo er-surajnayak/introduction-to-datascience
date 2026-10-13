@@ -13,7 +13,8 @@ export type InteractiveType =
   | 'outlier-lab'
   | 'formatting-lab'
   | 'operations-lab'
-  | 'descriptive-stats-lab';
+  | 'descriptive-stats-lab'
+  | 'distribution-lab';
 
 export interface CodeExample {
   title: string;

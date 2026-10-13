@@ -161,9 +161,9 @@ export function TransitionToDistributionsLab() {
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Link href="/modules/module-3" passHref legacyBehavior>
+          <Link href="/modules/module-3/distributions" passHref legacyBehavior>
             <Button kind="primary" renderIcon={ArrowRight} size="md">
-              Proceed to Topic 3.2: Distributions &amp; Skewness
+              Proceed to Topic 3.2: Distributions
             </Button>
           </Link>
         </div>

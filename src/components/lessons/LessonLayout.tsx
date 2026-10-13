@@ -197,6 +197,30 @@ import { SalaryCaseStudyLab } from './interactives/SalaryCaseStudyLab';
 import { DescriptiveStatsFinalChallenge } from './interactives/DescriptiveStatsFinalChallenge';
 import { TransitionToDistributionsLab } from './interactives/TransitionToDistributionsLab';
 
+// Topic 3.2 Interactives Suite
+import {
+  TwoClassroomsComparison,
+  DistributionAnatomyExplorer,
+  FrequencyTableBuilder,
+  BinAssignmentExplorer,
+  HistogramBuilder,
+  DistributionShapeGallery,
+  SkewnessPlayground,
+  PeaksAndModalityExplorer,
+  SpreadSimulator,
+  OutlierVsLongTailExplorer,
+  EmpiricalVsTheoreticalLab,
+  NormalCurveExplorer,
+  CumulativeFrequencyExplorer,
+  PythonDistributionWalkthrough,
+  DistributionDetectiveLab,
+  RealWorldCaseStudiesLab,
+  CampusPlacementChallenge,
+  InterpretationCheckLab,
+  DistributionsTopicSummary,
+  TransitionToVisualizationLab,
+} from './interactives/distributions';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -217,6 +241,7 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_6 = lesson.id === 'm2-t6' || lesson.slug === 'data-formatting-and-normalization';
   const isTopic2_7 = lesson.id === 'm2-t7' || lesson.slug === 'numpy-and-pandas-operations';
   const isTopic3_1 = lesson.id === 'm3-t1' || lesson.slug === 'descriptive-statistics';
+  const isTopic3_2 = lesson.id === 'm3-t2' || lesson.slug === 'distributions' || lesson.slug === 'distributions-and-skewness';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -270,6 +295,10 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic3_1 && <DataDetectiveHeroLab />}
             {isTopic3_1 && <PopulationVsSampleLab />}
             {isTopic3_1 && <CountAndMissingnessLab />}
+
+            {/* Topic 3.2 Early Interactives: Mystery of Two Classrooms & Distribution Anatomy */}
+            {isTopic3_2 && <TwoClassroomsComparison />}
+            {isTopic3_2 && <DistributionAnatomyExplorer />}
 
             {/* Topic 2.1 Interactive 1: The Restaurant Analogy */}
             {isTopic2_1 && <ApiRestaurantAnalogy />}
@@ -412,6 +441,22 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic3_1 && <StatsDetectiveGame />}
             {isTopic3_1 && <StudentMarksCaseStudyLab />}
             {isTopic3_1 && <SalaryCaseStudyLab />}
+
+            {/* Topic 3.2 Interactives Suite */}
+            {isTopic3_2 && <FrequencyTableBuilder />}
+            {isTopic3_2 && <BinAssignmentExplorer />}
+            {isTopic3_2 && <HistogramBuilder />}
+            {isTopic3_2 && <DistributionShapeGallery />}
+            {isTopic3_2 && <SkewnessPlayground />}
+            {isTopic3_2 && <PeaksAndModalityExplorer />}
+            {isTopic3_2 && <SpreadSimulator />}
+            {isTopic3_2 && <OutlierVsLongTailExplorer />}
+            {isTopic3_2 && <EmpiricalVsTheoreticalLab />}
+            {isTopic3_2 && <NormalCurveExplorer />}
+            {isTopic3_2 && <CumulativeFrequencyExplorer />}
+            {isTopic3_2 && <PythonDistributionWalkthrough />}
+            {isTopic3_2 && <DistributionDetectiveLab />}
+            {isTopic3_2 && <RealWorldCaseStudiesLab />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -572,13 +617,24 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 3.1 Capstone Challenge */}
             {isTopic3_1 && <DescriptiveStatsFinalChallenge />}
 
+            {/* Topic 3.2 Capstone Challenge & Interpretation Check */}
+            {isTopic3_2 && <CampusPlacementChallenge />}
+            {isTopic3_2 && <InterpretationCheckLab />}
+
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
             <InteractiveQuiz questions={lesson.quiz} />
+
+            {/* Topic 3.2 Topic Summary */}
+            {isTopic3_2 && <DistributionsTopicSummary />}
+
             <TopicSummary lesson={lesson} />
 
             {/* Topic 3.1 Transition to 3.2 Distributions */}
             {isTopic3_1 && <TransitionToDistributionsLab />}
+
+            {/* Topic 3.2 Transition to 3.3 Data Visualization */}
+            {isTopic3_2 && <TransitionToVisualizationLab />}
           </div>
 
           {/* Sticky Topic Navigation Sidebar */}
