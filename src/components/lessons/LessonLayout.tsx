@@ -221,6 +221,37 @@ import {
   TransitionToVisualizationLab,
 } from './interactives/distributions';
 
+// Topic 3.3 Interactives Suite
+import {
+  DataVisualizationMystery,
+  WhyVisualizationMattersLab,
+  MeetMatplotlibPlotBuilder,
+  FigureAnatomyExplorer,
+  LineChartTrendExplorer,
+  BarChartBuilder,
+  MatplotlibHistogramBuilder,
+  ScatterPlotRelationshipExplorer,
+  BoxPlotInspector,
+  PieVsBarComparisonLab,
+  ChartCustomizationStudio,
+  SubplotLayoutBuilder,
+  MeetSeabornComparisonLab,
+  SeabornCountPlotLab,
+  KdeSmoothnessExplorer,
+  SeabornBoxPlotLab,
+  ViolinPlotExplorer,
+  ScatterWithHueLab,
+  CorrelationHeatmapInspector,
+  ChooseTheRightChartLab,
+  FixTheChartLab,
+  DataStorytellingLab,
+  VisualizationStudio,
+  VisualizationEcommerceCaseStudy,
+  StudentEdaDashboardChallenge,
+  VisualizationTopicSummary,
+  TransitionToCorrelationLab,
+} from './interactives/visualization';
+
 export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const pathname = usePathname();
   const { isTopicCompleted, modules } = useCourseProgress();
@@ -242,6 +273,11 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
   const isTopic2_7 = lesson.id === 'm2-t7' || lesson.slug === 'numpy-and-pandas-operations';
   const isTopic3_1 = lesson.id === 'm3-t1' || lesson.slug === 'descriptive-statistics';
   const isTopic3_2 = lesson.id === 'm3-t2' || lesson.slug === 'distributions' || lesson.slug === 'distributions-and-skewness';
+  const isTopic3_3 =
+    lesson.id === 'm3-t3' ||
+    lesson.slug === 'data-visualization' ||
+    lesson.slug === 'data-visualization-and-chart-selection' ||
+    lesson.slug === 'visualization';
 
   const renderInteractiveBlock = () => {
     switch (lesson.interactiveType) {
@@ -299,6 +335,12 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {/* Topic 3.2 Early Interactives: Mystery of Two Classrooms & Distribution Anatomy */}
             {isTopic3_2 && <TwoClassroomsComparison />}
             {isTopic3_2 && <DistributionAnatomyExplorer />}
+
+            {/* Topic 3.3 Early Interactives: Visualization Mystery, Why Visualization Matters, Meet Matplotlib & Figure Anatomy */}
+            {isTopic3_3 && <DataVisualizationMystery />}
+            {isTopic3_3 && <WhyVisualizationMattersLab />}
+            {isTopic3_3 && <MeetMatplotlibPlotBuilder />}
+            {isTopic3_3 && <FigureAnatomyExplorer />}
 
             {/* Topic 2.1 Interactive 1: The Restaurant Analogy */}
             {isTopic2_1 && <ApiRestaurantAnalogy />}
@@ -457,6 +499,28 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic3_2 && <PythonDistributionWalkthrough />}
             {isTopic3_2 && <DistributionDetectiveLab />}
             {isTopic3_2 && <RealWorldCaseStudiesLab />}
+
+            {/* Topic 3.3 Core Interactives Suite */}
+            {isTopic3_3 && <LineChartTrendExplorer />}
+            {isTopic3_3 && <BarChartBuilder />}
+            {isTopic3_3 && <MatplotlibHistogramBuilder />}
+            {isTopic3_3 && <ScatterPlotRelationshipExplorer />}
+            {isTopic3_3 && <BoxPlotInspector />}
+            {isTopic3_3 && <PieVsBarComparisonLab />}
+            {isTopic3_3 && <ChartCustomizationStudio />}
+            {isTopic3_3 && <SubplotLayoutBuilder />}
+            {isTopic3_3 && <MeetSeabornComparisonLab />}
+            {isTopic3_3 && <SeabornCountPlotLab />}
+            {isTopic3_3 && <KdeSmoothnessExplorer />}
+            {isTopic3_3 && <SeabornBoxPlotLab />}
+            {isTopic3_3 && <ViolinPlotExplorer />}
+            {isTopic3_3 && <ScatterWithHueLab />}
+            {isTopic3_3 && <CorrelationHeatmapInspector />}
+            {isTopic3_3 && <ChooseTheRightChartLab />}
+            {isTopic3_3 && <FixTheChartLab />}
+            {isTopic3_3 && <DataStorytellingLab />}
+            {isTopic3_3 && <VisualizationStudio />}
+            {isTopic3_3 && <VisualizationEcommerceCaseStudy />}
 
             {/* Topic 1.1 Interactive 2: 9-Stage Iterative Lifecycle */}
             {isTopic1_1 && <LifecycleExplorer />}
@@ -621,12 +685,18 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
             {isTopic3_2 && <CampusPlacementChallenge />}
             {isTopic3_2 && <InterpretationCheckLab />}
 
+            {/* Topic 3.3 Capstone Challenge */}
+            {isTopic3_3 && <StudentEdaDashboardChallenge />}
+
             <CommonMistakes mistakes={lesson.commonMistakes} />
             <ThinkingApproach strategies={lesson.thinkingStrategies} />
             <InteractiveQuiz questions={lesson.quiz} />
 
             {/* Topic 3.2 Topic Summary */}
             {isTopic3_2 && <DistributionsTopicSummary />}
+
+            {/* Topic 3.3 Topic Summary */}
+            {isTopic3_3 && <VisualizationTopicSummary />}
 
             <TopicSummary lesson={lesson} />
 
@@ -635,6 +705,9 @@ export function LessonLayout({ lesson }: { lesson: LessonContent }) {
 
             {/* Topic 3.2 Transition to 3.3 Data Visualization */}
             {isTopic3_2 && <TransitionToVisualizationLab />}
+
+            {/* Topic 3.3 Transition to 3.4 Correlation */}
+            {isTopic3_3 && <TransitionToCorrelationLab />}
           </div>
 
           {/* Sticky Topic Navigation Sidebar */}

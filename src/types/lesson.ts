@@ -14,7 +14,8 @@ export type InteractiveType =
   | 'formatting-lab'
   | 'operations-lab'
   | 'descriptive-stats-lab'
-  | 'distribution-lab';
+  | 'distribution-lab'
+  | 'visualization-lab';
 
 export interface CodeExample {
   title: string;

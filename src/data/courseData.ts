@@ -80,7 +80,7 @@ export const courseConfig: CourseConfig = {
       topics: [
         { id: 'm3-t1', slug: 'descriptive-statistics', title: 'Descriptive Statistics', estimatedMinutes: 30 },
         { id: 'm3-t2', slug: 'distributions', title: 'Distributions', estimatedMinutes: 35 },
-        { id: 'm3-t3', title: 'Data Visualization & Chart Selection', estimatedMinutes: 40 },
+        { id: 'm3-t3', slug: 'data-visualization', title: 'Data Visualization & Chart Selection', estimatedMinutes: 40 },
         { id: 'm3-t4', title: 'Correlation & Multicollinearity', estimatedMinutes: 35 },
         { id: 'm3-t5', title: 'Covariance Matrices', estimatedMinutes: 30 },
         { id: 'm3-t6', title: 'Feature Analysis', estimatedMinutes: 40 },

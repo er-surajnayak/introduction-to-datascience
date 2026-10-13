@@ -108,7 +108,7 @@ export function TransitionToVisualizationLab() {
 
       {/* Next Topic Navigation Button */}
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Link href="/modules/module-3/data-visualization-and-chart-selection" passHref legacyBehavior>
+        <Link href="/modules/module-3/data-visualization" passHref legacyBehavior>
           <Button kind="primary" renderIcon={ArrowRight} size="lg" style={{ backgroundColor: '#0f62fe' }}>
             Proceed to Topic 3.3: Data Visualization
           </Button>
